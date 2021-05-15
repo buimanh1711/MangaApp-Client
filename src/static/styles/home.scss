@@ -1,0 +1,254 @@
+#collection1 {
+}
+
+#collection1, #collection1 .collection1-container {
+  width: 100%;
+  margin: 45px auto;
+  position: relative;
+}
+
+#collection1 .item-container {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border: 1px solid var(--primary-color)
+}
+
+#collection1 .item-content {
+  width: 100%;
+}
+
+#collection1 .item-thumb {
+  width: 100%;
+}
+
+#collection1 .item-thumb img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+#collection1 .item-title {
+  margin: 12px auto;
+  height: 112px;
+  max-height: 110px;
+}
+
+#collection1 .item-title-title {
+  font-size: 1.4rem;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.8rem;
+  color: var(--text-color)
+}
+
+#collection1 .item-title-desc {
+  font-size: 1rem;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+#collection1 .collection1-title, #latest .latest-title {
+  position: absolute;
+  width: 144px;
+  height: 50px;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  left: -95px;
+  top: 147px;
+  transform: rotate(-90deg)
+}
+
+/* latest */
+
+#latest {
+  position: relative;
+  width: 100%;
+  margin: 60px 0px;
+}
+
+#latest .posts-container, #latest .first-container {
+  width: 100%;
+}
+
+#latest .first-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0px;
+  flex-wrap: wrap;
+  border: 1px solid var(--primary-color);
+  border-radius: 12px;
+}
+
+#latest .first-thumb {
+  width: 48%;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#latest .first-thumb img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+#latest .first-infor {
+  width: 48%;
+  display: inline-flex;
+   flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#latest .first-category {
+  font-size: 1rem;
+  padding: 6px 14px;
+  background: var(--primary-color-2);
+  color: white;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+#latest .first-title {
+  margin: 20px 0;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  flex-shrink: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--text-color)
+}
+
+#latest .first-desc {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 1.6rem;
+}
+
+#latest .next-content {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid var(--primary-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#latest .next-content img {
+  aspect-ratio: 1;
+  width: 100%;
+  object-fit: cover;
+}
+
+#latest .next-infor {
+  background: var(--primary-color-2);
+  height: auto;
+  padding: 20px;
+  height: 220px;
+  color: white;
+}
+
+#latest .next-infor .next-title {
+  font-weight: bold;
+  font-size: 1.8rem;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  color: white;
+}
+
+#latest .next-infor .next-desc {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+#latest .next-infor .next-category {
+  font-size: 1rem;
+  padding: 6px 20px;
+  background: #C6E5EB;
+  border-radius: 999999px;
+  display: inline-block;
+  color: black;
+}
+
+#latest .next-content.sec img {
+  aspect-ratio: 5/3;
+  object-fit: cover;
+}
+
+#latest .latest-seemore {
+  text-align: right;
+  width: 100%;
+  display: block;
+  padding-right: 20px;
+  font-size: 1.2rem;
+}
+
+
+
+#invite {
+  margin: 45px 0px;
+
+}
+
+#invite .invite-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#invite .invite-container h1 {
+  margin: 0;
+}
+
+#invite .form-container {
+  width: 320px;
+  position: relative;
+}
+#invite .invite-container input {
+  padding: 20px;
+  width: 100%;
+  border: none;
+  border-radius: 9999px;
+  background: #344052;
+  color: white;
+  font-size: 1.1rem;
+}
+
+#invite .invite-container button {
+  position: absolute;
+  border: none;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: #5073fe;
+  color: white;
+  cursor: pointer;
+}

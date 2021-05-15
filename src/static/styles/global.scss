@@ -1,0 +1,111 @@
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(219, 219, 219, 0.452);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
+}
+
+#loading img {
+  width: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ck.ck-editor__main > .ck-editor__editable {
+  max-height: 400px;
+}
+
+.slick-slide > div {
+  padding: 0px 8px !important;
+}
+
+.slick-arrow.slick-next {
+  right: 0 !important;
+  z-index: 5;
+}
+
+.slick-arrow.slick-prev {
+  left: 0 !important;
+  z-index: 5;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  position: absolute;
+  top: 0;
+  font-size: 30px;
+}
+.slick-prev:before {
+  left: 0;
+  color: var(--primary-color);
+}
+
+.slick-next:before {
+  right: 0;
+  color: var(--primary-color);
+}
+
+#stories-list {
+  .row.custom-gutter {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  
+  [class^='col'].custom-gutter,
+  [class*=' col'].custom-gutter {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .stories-list-container {
+    position: relative;
+    .category {
+      position: absolute;
+      background: var(--primary-color);
+      color: white;
+      font-size: .8rem;
+      padding: 4px 6px;
+      font-style: italic;
+    }
+    .item-container {
+      border: 1px solid rgba(255, 119, 56, 0.137);
+      border-radius: 2px;
+      margin-bottom: 32px;  
+      .thumb {
+        width: 100%;
+        img {
+          width: 100%;
+          aspect-ratio: 3/4;
+          object-fit: cover;
+        }
+      }
+      .info {
+        margin-top: 12px;
+        padding: 4px;
+        a {
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: var(--primary-color);
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          text-align: center;
+        }
+        p {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          font-size: .9rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
