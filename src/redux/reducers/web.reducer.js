@@ -21,7 +21,25 @@ const initState = {
       path: "/follow",
     }
   ],
+  adminMenu: [
+    {
+      title: "Quản lý truyện",
+      path: "/admin/stories",
+      icon: <i className="fas fa-graduation-cap"></i>,
+    },
+    {
+      title: "Quản lý chuyên mục",
+      path: "/admin/categories",
+      icon: <i className="fas fa-user-md"></i>
+    },
+    {
+      title: "Thông tin",
+      path: "/admin/about",
+      icon: <i className="fas fa-info"></i>,
+    },
+  ],
   loading: false,
+  adminTitle: ''
 }
 
 const webReducer = (state = initState, action) => {
