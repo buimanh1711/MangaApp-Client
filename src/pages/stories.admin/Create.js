@@ -42,7 +42,7 @@ const Create = ({ status, setCreateForm }) => {
     const formData = new FormData()
     formData.append('title', title)
     formData.append('shortDescription', shortDescription)
-    formData.append('categories', currentCategories)
+    formData.append('categories', JSON.stringify(currentCategories))
     formData.append('text', text)
     formData.append('image', file)
 

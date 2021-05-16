@@ -21,7 +21,7 @@ const Update = ({ updateForm, setUpdateForm }) => {
   useEffect(() => {
     const newCategories = info.categories?.map(item => item.category?._id)
     setCurrentCategories(newCategories)
-  }, [info])
+  }, [info.categories])
 
   useEffect(() => {
     getData({
@@ -55,9 +55,9 @@ const Update = ({ updateForm, setUpdateForm }) => {
     console.log(info.image)
     formData.append('title', title)
     formData.append('shortDescription', shortDescription)
-    formData.append('categories', currentCategories)
+    formData.append('categories', JSON.stringify(currentCategories || []))
     formData.append('text', text)
-    formData.append('image', info.image)
+    formData.append('image', JSON.stringify(info.image))
 
     if (file) {
       formData.append('newImage', file)
