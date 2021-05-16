@@ -1,25 +1,25 @@
 import { useState, useRef, useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-// import { getAllGuestsAsync, toggleLoading } from '../../redux/actions'
-// import { createGuest } from '../../services/global'
+// import { getAllUsersAsync, toggleLoading } from '../../redux/actions'
+// import { createUser } from '../../services/global'
 import toChar from '../../utils/toChar'
 
-const Create = ({ status, setCreateForm, setProduct }) => {
-  const history = useHistory()
-
+const Create = ({ status, setCreateForm }) => {
   const dispatch = useDispatch()
-
   const countries = []
+
+  const [file, setFile] = useState(null)
+  const [data, getData] = useState({ name: '', path: '/images/product_default_img.png' })
 
   const nameEl = useRef(null)
   const idEl = useRef(null)
   const phoneEl = useRef(null)
-  const emailEl = useRef(null)
+  const mailEl = useRef(null)
   const addEl = useRef(null)
   const schoolEl = useRef(null)
-  const dateEl = useRef(null)
-  const sexEl = useRef(null)
+  const usernameEl = useRef(null)
+  const passwordEl = useRef(null)
 
   useEffect(() => {
     // if (!login) {
@@ -29,44 +29,74 @@ const Create = ({ status, setCreateForm, setProduct }) => {
     // }
   }, [])
 
+  const handleChange = (e) => {
+    const selectedFile = e.target.files[0]
+    const reader = new FileReader()
+    reader.onloadend = (e) => {
+      const url = reader.result
+      setFile(url)
+      getData({ name: 'manh', path: url })
+    }
+
+    if (selectedFile && selectedFile.type.match('image.*')) {
+      reader.readAsDataURL(selectedFile)
+    }
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const name = nameEl.current.value.trim()
-    const id = idEl.current.value.trim()
-    const phone = phoneEl.current.value
+    const fullName = nameEl.current.value.trim()
+    // const id = idEl.current.value.trim()
+    const phone = phoneEl.current.value.trim()
+    const email = mailEl.current.value.trim()
     const address = addEl.current.value.trim()
-    const birth = dateEl.current.value.trim()
-    const sex = sexEl.current.value.trim()
-    const school = schoolEl.current.value !== 'Trường THPT' && JSON.parse(schoolEl.current.value) || null
-    const text = toChar(name)
+    const username = usernameEl.current.value.trim()
+    const password = passwordEl.current.value.trim()
+    const text = toChar(fullName)
 
-    const data = {
-      fullName: name, cmnd: id, phone, school, sex, birth, address, text
-    }
+    // const data = {
+    //   fullName, email, phone, address, username, password, image: file, text
+    // }
 
-    console.log(data)
+    const formData = new FormData()
+    formData.append('fullName', fullName)
+    formData.append('phone', phone)
+    formData.append('email', email)
+    formData.append('address', address)
+    formData.append('username', username)
+    formData.append('password', password)
+    formData.append('text', text)
+    formData.append('image', file)
+
     // dispatch(toggleLoading(true))
-    // createGuest(data)
+    // createUser(formData)
     //   .then(res => {
+    //     setCreateForm(false)
+
     //     if (res.data && res.data.status) {
-    //       setCreateForm(false)
-    //       setProduct({ status: true, user: res.data.newGuest })
     //       dispatch({
-    //         type: 'CREATE_GUEST',
-    //         payload: res.data.newGuest
+    //         type: 'CREATE_USER',
+    //         payload: res.data.staff
     //       })
     //     } else {
     //       alert(res.data.message)
+    //       // dispatch(triggerNotif({
+    //       //   type: 'ERROR',
+    //       //   content: res.data.message
+    //       // }))
     //     }
     //   })
     //   .catch(err => {
-    //     alert(err)
+    //     // dispatch(triggerNotif({
+    //     //   type: 'ERROR',
+    //     //   content: 'SERVER_ERROR!'
+    //     // }))
     //   })
     //   .then(() => {
     //     dispatch(toggleLoading(false))
-    //     dispatch(getAllGuestsAsync({}))
+    //     dispatch(getAllUsersAsync({}))
     //   })
   }
 
@@ -80,44 +110,38 @@ const Create = ({ status, setCreateForm, setProduct }) => {
               <span onClick={() => { setCreateForm(false) }} className='close'>
                 <i className="fas fa-times"></i>
               </span>
-              <div className='form-container'>
-                <h4>Thêm truyện mới</h4>
+              <h4>Thêm truyện mới</h4>
+              <div className='form-container container'>
+                <div title='chọn ảnh đại diện' className='file-upload'>
+                  <div className='image-container'>
+                    <img src={data.path} />
+                    <label htmlFor='product_image'>
+                      <i className="fas fa-camera"></i>
+                      <input onChange={handleChange} hidden type='file' id='product_image' />
+                    </label>
+                  </div>
+                </div>
                 <div className='create-name'>
                   <label htmlFor='create_name'>Tên truyện: </label>
                   <input required ref={nameEl} id='create_name' />
                 </div>
-                <div className='create-id'>
+                {/* <div className='create-id'>
                   <label htmlFor='create_id'>CMND: </label>
                   <input required ref={idEl} id='create_id' />
-                </div>
-                <div className='create-email'>
-                  <label htmlFor='create_email'>Email: </label>
-                  <input required ref={emailEl} id='create_email' />
-                </div>
-                <div className='create-phone'>
+                </div> */}
+                {/* <div className='create-phone'>
                   <label htmlFor='create_phone'>SĐT: </label>
-                  <input type='number' required ref={phoneEl} id='create_phone' />
+                  <input required ref={phoneEl} id='create_phone' />
+                </div> */}
+                {/* <div className='create-mail'>
+                  <label htmlFor='create_mail'>email: </label>
+                  <input required ref={mailEl} id='create_mail' />
+                </div> */}
+                <div className='create-cate'>
+                  <label htmlFor='create_cate'>Mô tả ngắn: </label>
+                  <input required ref={addEl} id='create_cate' />
                 </div>
-                <div className='create-address'>
-                  <label htmlFor='create_address'>Địa chỉ: </label>
-                  <input required ref={addEl} id='create_phone' />
-                </div>
-                <div className='create-date'>
-                  <label htmlFor='create_phone'>Ngày sinh: </label>
-                  <input type='date' required ref={dateEl} id='create_phone' />
-                </div>
-                <div className='create-sex'>
-                  <select ref={sexEl} required defaultValue='Giới tính' name="categories">
-                    <option value="Giới tính" disabled hidden>Giới tính</option>
-                    <option value={'Nam'}>
-                      Nam
-                    </option>
-                    <option value='Nữ'>
-                      Nữ
-                    </option>
-                  </select>
-                </div>
-                <div className='create-school'>
+                <div className='create-category'>
                   <select required defaultValue='Trường THPT' ref={schoolEl} name="categories">
                     <option value="Trường THPT" disabled hidden>Trường THPT</option>
                     {
@@ -130,7 +154,15 @@ const Create = ({ status, setCreateForm, setProduct }) => {
                     }
                   </select>
                 </div>
-                <button type='submit'>Đăng ký</button>
+                {/* <div className='create-username'>
+                  <label htmlFor='create_username'>Tài khoản: </label>
+                  <input required ref={usernameEl} id='create_username' />
+                </div>
+                <div className='create-password'>
+                  <label htmlFor='create_password'>Mật khẩu: </label>
+                  <input required ref={passwordEl} id='create_password' />
+                </div> */}
+                <button type='submit'>Submit</button>
               </div>
             </form>
           </div>

@@ -3,6 +3,7 @@ import ClientMenu from "./Menu"
 import Create from './Create'
 import { useState, useEffect } from "react"
 import ClientInfo from "./ClientDetail"
+import ChapterCreate from "./ChapterCreate"
 import Update from "./Update"
 import Product from "./Product"
 import { useDispatch } from "react-redux"
@@ -12,6 +13,7 @@ const Client = () => {
   const dispatch = useDispatch()
 
   const [createForm, setCreateForm] = useState(false)
+  const [chapterCreateForm, setChapterCreateForm] = useState(false)
   const [clientInfo, setClientInfo] = useState({status: false, info: {}})
   const [updateForm, setUpdateForm] = useState({status: false, info: {}})
   const [product, setProduct] = useState({status: false, user: null})
@@ -29,11 +31,12 @@ const Client = () => {
     <div id='client-tab'>
       <Product product={product} setProduct={setProduct} />
       <Create setProduct={setProduct} status={createForm} setCreateForm={setCreateForm} />
+      <ChapterCreate setProduct={setProduct} status={chapterCreateForm} setChapterCreateForm={setChapterCreateForm} />
       <Update updateForm={updateForm} setUpdateForm={setUpdateForm} />
       <ClientInfo clientInfo={clientInfo} setClientInfo={setClientInfo} />
       <div className='client-container'>
         <ClientMenu setCreateForm={setCreateForm} />
-        <ClientList setProduct={setProduct} setClientInfo={setClientInfo} setUpdateForm={setUpdateForm} />
+        <ClientList setChapterCreateForm={setChapterCreateForm} setProduct={setProduct} setClientInfo={setClientInfo} setUpdateForm={setUpdateForm} />
       </div>
     </div>
   )

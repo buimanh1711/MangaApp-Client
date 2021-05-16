@@ -169,24 +169,24 @@
       box-shadow: 0px 0px 12px 0px;
       padding: 32px 24px;
       border-radius: 4px;
+      h4 {
+        font-weight: bold;
+        margin-bottom: 32px;
+        text-align: center;
+      }
       .form-container {
-        width: 80%;
-        margin: 0 auto;
-        h4 {
-          font-weight: bold;
-          margin-bottom: 32px;
-          text-align: center;
-        }
+        width: 400px;
         .create-id,
         .create-phone,
         .create-name,
-        .create-date,
-        .create-address,
-        .create-email {
+        .create-cate,
+        .create-username,
+        .create-mail,
+        .create-password {
           input {
             border: 1px solid rgb(146, 146, 146);
             padding: 3px 10px;
-            width: 80%
+            width: 70%;
           }
           display: flex;
           justify-content: space-between;
@@ -194,28 +194,61 @@
           margin-bottom: 12px;
           width: 100%;
         }
+        .create-category {
+          select {
+            display: block;
+            padding: 4px 4px;
+            margin-left: auto;
+          }
+        }
+        .create-cate {
+          align-items: flex-start;
+          input {
+            min-height: 100px;
+          }
+        }
+        .file-upload {
+          width: 100%;
+          .image-container {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 64%;
+            position: relative;
+            margin: 0 auto;
+            margin-bottom: 32px;
+            img {
+              width: 100%;
+              aspect-ratio: 1;
+              object-fit: cover;
+            }
+            label {
+              cursor: pointer;
+              width: 100%;
+              text-align: center;
+              position: absolute;
+              z-index: 1;
+              bottom: 0;
+              left: 0;
+              padding: 4px 0px;
+              background: rgba(134, 134, 134, 0.432);
+            }
+          }
+        }
         label {
-          width: 20%;
+          font-weight: bold;
           margin: 0;
         }
-        .create-school,
-        .create-major,
-        .create-sex {
+        .create-address {
           display: block;
+          width: 150px;
           transform: translateX(-6px);
           margin-left: auto;
           select {
             outline: none;
             line-height: 40px;
-            width: 40%;
-            padding: 4px;
-            margin: 12px;
-            margin-right: 0;
-            margin-left: auto;
-            display: block;
           }
         }
-  
+
         button {
           width: 120px;
           padding: 8px 0px;
@@ -229,6 +262,101 @@
           color: white;
         }
       }
+    }
+  }
+
+  #client-create-chapter {
+    position: fixed;
+    top: 0;
+    left: 25%;
+    overflow: scroll;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.349);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+    form {
+      span.close {
+        opacity: 1;
+        background: rgb(240, 240, 240);
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        color: rgb(252, 50, 50);
+        font-size: 0.8rem;
+        padding: 6px 16px;
+        margin: 0;
+      }
+      position: absolute;
+      overflow-x: scroll;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      background: white;
+      box-shadow: 0px 0px 12px 0px;
+      padding: 32px 24px;
+      border-radius: 4px;
+      .form-container {
+        width: 80%;
+        margin: 0 auto;
+        h4 {
+          font-weight: bold;
+          margin-bottom: 32px;
+          text-align: center;
+        }
+        .create-id,
+        .create-year,
+        .create-name {
+          input {
+            border: 1px solid rgb(146, 146, 146);
+            padding: 3px 10px;
+            width: 80%
+          }
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 12px;
+          width: 100%;
+        }
+        .create-desc {
+          margin: 24px auto;
+        }
+        label {
+          width: 20%;
+          margin: 0;
+        }
+        .create-cert {
+          display: block;
+          width: 150px;
+          transform: translateX(-6px);
+          margin-left: auto;
+          select {
+            outline: none;
+            line-height: 40px;
+            width: 100%;
+            padding: 4px;
+            border: 1px solid rgb(44, 44, 44);
+          }
+        }
+  
+        button.sm-btn {
+          width: 120px;
+          padding: 8px 0px;
+          display: block;
+          margin: auto;
+          margin-top: 24px;
+        }
+        button.sm-btn:hover {
+          transition: ease 0.2s;
+          background: rgb(62, 144, 250);
+          color: white;
+        }
+      }
+    }
+    form::-webkit-scrollbar {
+      display: none;
     }
   }
 

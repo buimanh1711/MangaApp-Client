@@ -6,13 +6,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import toChar from '../../utils/toChar'
 import Editor from '../../global/CkEditor'
 
-const Create = ({ status, setCreateForm }) => {
+const ChapterCreate = ({ status, setChapterCreateForm }) => {
   const history = useHistory()
 
   const dispatch = useDispatch()
 
   const [description, setDescription] = useState('Đang cập nhật')
   const nameEl = useRef(null)
+  const yearsEl = useRef(null)
+  const targetEl = useRef(null)
+  const blockEl = useRef(null)
+  const certEl = useRef(null)
+
 
   useEffect(() => {
     // if (!login) {
@@ -27,15 +32,21 @@ const Create = ({ status, setCreateForm }) => {
     e.preventDefault()
 
     const name = nameEl.current.value.trim()
+    const years = yearsEl.current.value
+    const target = targetEl.current.value
+    const block = blockEl.current.value.trim()
+    const cert = certEl.current.value
+    const text = toChar(name)
+
     const data = {
-      title: name
+      name, description, years, text, target, cert, block
     }
 
     // dispatch(toggleLoading(true))
     // createProduct(data)
     //   .then(res => {
     //     if (res.data && res.data.status) {
-    //       setCreateForm(false)
+    //       setChapterCreateForm(false)
 
     //       dispatch({
     //         type: 'CREATE_PRODUCT',
@@ -59,18 +70,21 @@ const Create = ({ status, setCreateForm }) => {
   return (
     <>
       {
-        status &&
-        <div id='product-create'>
+        !status &&
+        <div id='client-create-chapter'>
           <div className='create-container'>
             <form onSubmit={handleSubmit} className='create-form'>
-              <span onClick={() => { setCreateForm(false) }} className='close'>
+              <span onClick={() => { setChapterCreateForm(false) }} className='close'>
                 <i className="fas fa-times"></i>
               </span>
               <div className='form-container'>
-                <h4>Thêm chuyên mục</h4>
+                <h4>Thêm Chapter</h4>
                 <div className='create-name'>
-                  <label htmlFor='create_name'>Tiêu đề: </label>
+                  <label htmlFor='create_name' style={{fontWeight: 'bold'}}>Tên chapter: </label>
                   <input placeholder='VD: Khoa học máy tính' required ref={nameEl} id='create_name' name='major_name' />
+                </div>
+                <div className='create-desc'>
+                  <Editor setDescription={setDescription} />
                 </div>
                 <button className='sm-btn' type='submit'>Thêm</button>
               </div>
@@ -84,4 +98,4 @@ const Create = ({ status, setCreateForm }) => {
   )
 }
 
-export default Create
+export default ChapterCreate
