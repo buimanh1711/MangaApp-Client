@@ -195,16 +195,18 @@
           width: 100%;
         }
         .create-category {
-          select {
-            display: block;
-            padding: 4px 4px;
-            margin-left: auto;
-          }
-        }
-        .create-cate {
-          align-items: flex-start;
-          input {
-            min-height: 100px;
+          margin-top: 12px;
+          span {
+            padding: 6px 8px;
+            text-align: center;
+            font-weight: bold;
+            font-style: italic;
+            margin-top: 8px;
+            cursor: pointer;
+            i {
+              font-size: .9rem;
+              margin-right: 4px;
+            }
           }
         }
         .file-upload {
@@ -212,7 +214,7 @@
           .image-container {
             border-radius: 50%;
             overflow: hidden;
-            width: 64%;
+            width: 34%;
             position: relative;
             margin: 0 auto;
             margin-bottom: 32px;

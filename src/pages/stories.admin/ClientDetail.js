@@ -7,15 +7,8 @@ import formatNumber from '../../utils/formatNum'
 const ClientInfo = ({ clientInfo, setClientInfo }) => {
 
   const { info } = clientInfo
-  const { bought } = info
-  const boughtProduct = bought && bought.reduce((newArr = [], item) => {
-    if (item && item.product) return [
-      ...newArr,
-      item
-    ]
-  }, [])
+  const { chapters } = info
 
-  console.log(bought, boughtProduct)
   useEffect(() => {
     // if (!login) {
     //   setTimeout(() => {
@@ -38,38 +31,30 @@ const ClientInfo = ({ clientInfo, setClientInfo }) => {
               <button onClick={close}>
                 <i className="fas fa-times"></i>
               </button>
-              <h4>Thông tin khách hàng</h4>
+              <h4>Thông tin truyện</h4>
               <div className='form-container'>
                 <div className='info'>
                   <div>
-                    <strong>Họ tên:</strong><span>{info.fullName}</span>
+                    <strong>Tên:</strong><span>{info.title || '...'}</span>
                   </div>
                   <div>
-                    <strong>Giới tính:</strong><span>{info.sex}</span>
+                    <strong>Thể loại:</strong><span>
+                      {
+                        info.categories && info.categories.map((item, index) => <i>{index > 0 ? `, ${item.category.title}` : `${item.category.title}`}</i>)
+                      }
+                    </span>
                   </div>
                   <div>
-                    <strong>Ngày sinh:</strong><span>{date(info.birth)}</span>
+                    <strong>Hoàn thành:</strong><span>{info.isCompleted && "X" || '-'}</span>
                   </div>
                   <div>
-                    <strong>Trường THPT:</strong><span>{info.school && info.school.name}</span>
-                  </div>
-                  <div>
-                    <strong>Địa chỉ:</strong><span>{info.address || 'Chưa cập nhật'}</span>
-                  </div>
-                  <div>
-                    <strong>CMND:</strong><span>{info.cmnd}</span>
-                  </div>
-                  <div>
-                    <strong>SĐT:</strong><span>{info.phone}</span>
-                  </div>
-                  <div>
-                    <strong></strong>
+                    <strong>Mô tả:</strong><span>{info.shortDescription || '...'}</span>
                   </div>
                 </div>
                 <div className='products'>
-                  <p><strong>Chuyên ngành đăng ký:</strong></p>
+                  <p><strong>Chương:</strong></p>
                   {
-                    boughtProduct && boughtProduct.length > 0 &&
+                    chapters && chapters.length > 0 &&
                     <ul className='scroll'>
                       <li className='title-row'>
                         <span className='count'>STT</span>
@@ -78,14 +63,14 @@ const ClientInfo = ({ clientInfo, setClientInfo }) => {
                         <span>Chỉ tiêu</span>
                       </li>
                       {
-                        boughtProduct.map((item, index) => {
+                        chapters.map((item, index) => {
                           if (item && item.product) {
                             return (
-                              <li key={item.product._id}>
+                              <li key={item.chapter._id}>
                                 <span className='count'>{index + 1}</span>
-                                <span>{item.product.name}</span>
-                                <span>{formatNumber(item.product.years)}</span>
-                                <span>{item.product.target}</span>
+                                <span>{item.chapter.name}</span>
+                                <span>{formatNumber(item.chapter.years)}</span>
+                                <span>{item.chapter.target}</span>
                               </li>
                             )
                           } else {
@@ -95,7 +80,7 @@ const ClientInfo = ({ clientInfo, setClientInfo }) => {
                       }
                     </ul>
                     ||
-                    <Warning alert='Chưa có chuyên ngành nào!' />
+                    <Warning alert='Chưa có chương nào!' />
                   }
                 </div>
               </div>

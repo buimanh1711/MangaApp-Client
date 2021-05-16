@@ -15,7 +15,7 @@ const Client = () => {
   const [createForm, setCreateForm] = useState(false)
   const [chapterCreateForm, setChapterCreateForm] = useState(false)
   const [clientInfo, setClientInfo] = useState({status: false, info: {}})
-  const [updateForm, setUpdateForm] = useState({status: false, info: {}})
+  const [updateForm, setUpdateForm] = useState({status: false, info: {}, index: 0})
   const [product, setProduct] = useState({status: false, user: null})
   
   useEffect(() => {
@@ -29,7 +29,7 @@ const Client = () => {
 
   return (
     <div id='client-tab'>
-      <Product product={product} setProduct={setProduct} />
+      {/* <Product product={product} setProduct={setProduct} /> */}
       <Create setProduct={setProduct} status={createForm} setCreateForm={setCreateForm} />
       <ChapterCreate setProduct={setProduct} status={chapterCreateForm} setChapterCreateForm={setChapterCreateForm} />
       <Update updateForm={updateForm} setUpdateForm={setUpdateForm} />

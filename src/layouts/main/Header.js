@@ -88,7 +88,7 @@ const Header = () => {
               </div>
               ||
               <div className='user'>
-                <Link title='Thêm truyện mới' className='add'>
+                <Link title='Thêm truyện mới' to='/admin/stories' className='add'>
                   <span></span>
                   <i className="fas fa-pen-nib"></i>
                 </Link>

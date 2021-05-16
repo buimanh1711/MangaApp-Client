@@ -1,13 +1,13 @@
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
-// import { getAllProductsAsync, removeProductAsync } from '../../redux/actions'
+import { toggleLoading } from '../../redux/actions/web.actions'
+import { getAllCategories } from '../../services/categories.services'
 
 const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
-  const products = []
+  const categories = useSelector(state => state.categories.categories)
   const productPage = {}
-  const login = true
-
   const dispatch = useDispatch()
 
   const deleteProduct = (_id) => {
@@ -22,7 +22,7 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
     <div id='product-list'>
       <div className='product-list-container'>
         {
-          products && products.length > 0 &&
+          categories && categories.length > 0 &&
           <ul>
             <li className='title-row'>
               <div className='count'>
@@ -30,25 +30,14 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
               </div>
               <div className='info'>
                 <span>Tên</span>
-                <span>Số năm</span>
-                <span>Chỉ tiêu</span>
               </div>
               <div className='tools'>
-                {
-                  login &&
-                  <>
-                    <span>Sửa</span>
-                    <span>Xóa</span>
-                  </>
-                  ||
-                  <span style={{ textAlign: 'center' }}>
-                    Văn bằng
-                  </span>
-                }
+                <span>Sửa</span>
+                <span>Xóa</span>
               </div>
             </li>
             {
-              products.map((item, index) => {
+              categories.map((item, index) => {
                 if (index < 10) return (
                   <li key={item._id}>
                     <div className='count'>
@@ -56,28 +45,16 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
                     </div>
                     <div className='info'>
                       <span className='name' onClick={() => setProductInfo({ status: true, info: item })}>
-                        {item.name}
+                        {item.title}
                       </span>
-                      <span style={{ fontWeight: 'bold' }}>{item.years || <strong style={{ color: 'red' }}>Chưa cập nhật</strong>}</span>
-                      <span>{item.target || <strong style={{ color: 'red' }}>Chưa cập nhật</strong>}</span>
                     </div>
                     <div className='tools'>
-                      {
-                        login &&
-                        <>
-                          <button className='edit' onClick={() => setUpdateForm({ status: true, info: item })}>
-                            <i className="fas fa-edit"></i>
-                          </button>
-                          <button onClick={() => deleteProduct(item._id)} className='remove'>
-                            <i className="fas fa-trash-alt"></i>
-                          </button>
-                        </>
-                        ||
-                        <span style={{ textAlign: 'center' }}>
-                          {item.cert}
-                        </span>
-                      }
-
+                      <button className='edit' onClick={() => setUpdateForm({ status: true, info: item })}>
+                        <i className="fas fa-edit"></i>
+                      </button>
+                      <button onClick={() => deleteProduct(item._id)} className='remove'>
+                        <i className="fas fa-trash-alt"></i>
+                      </button>
                     </div>
                   </li>
                 )

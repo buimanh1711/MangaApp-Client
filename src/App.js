@@ -25,12 +25,22 @@ import Register from './layouts/sign/Register'
 import Search from './pages/search'
 import { authAsync } from './redux/actions/authen.actions'
 import Admin from './layouts/admin'
+import { getAllCategoriesAsync } from './redux/actions/categories.actions'
+import { getAllStoriesAsync } from './redux/actions/stories.action'
 
 function App() {
   const dispatch = useDispatch()
   
   useEffect(() => {
     dispatch(authAsync())
+  }, [])
+
+  useEffect(() => {
+    dispatch(getAllCategoriesAsync({}))
+  }, [])
+
+  useEffect(() => {
+    dispatch(getAllStoriesAsync({}))
   }, [])
 
   return (

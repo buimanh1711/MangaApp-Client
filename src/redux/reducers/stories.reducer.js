@@ -30,6 +30,7 @@ const storiesReducer = (state = initState, action) => {
     case "UPDATE_ONE_STORY": {
       const { stories } = state
       const { newStory, index } = payload
+      console.log(payload)
       let newStories = [
         ...stories.slice(0, index),
         newStory,

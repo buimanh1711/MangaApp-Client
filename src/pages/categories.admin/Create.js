@@ -1,26 +1,12 @@
 import { useRef, useEffect, useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-// import { getAllProductsAsync, toggleLoading } from '../../redux/actions'
-// import { createProduct } from '../../services/global'
-import toChar from '../../utils/toChar'
-import Editor from '../../global/CkEditor'
+import { useDispatch } from 'react-redux'
+import { createCategoryAsync } from '../../redux/actions/categories.actions'
 
 const Create = ({ status, setCreateForm }) => {
-  const history = useHistory()
 
   const dispatch = useDispatch()
 
-  const [description, setDescription] = useState('Đang cập nhật')
   const nameEl = useRef(null)
-
-  useEffect(() => {
-    // if (!login) {
-    //   setTimeout(() => {
-    //     history.replace('/login')
-    //   }, 1000)
-    // }
-  }, [])
 
 
   const handleSubmit = (e) => {
@@ -31,29 +17,8 @@ const Create = ({ status, setCreateForm }) => {
       title: name
     }
 
-    // dispatch(toggleLoading(true))
-    // createProduct(data)
-    //   .then(res => {
-    //     if (res.data && res.data.status) {
-    //       setCreateForm(false)
+    dispatch(createCategoryAsync(data))
 
-    //       dispatch({
-    //         type: 'CREATE_PRODUCT',
-    //         payload: {
-    //           ...res.data.newProduct,
-    //         }
-    //       })
-    //     } else {
-    //       alert("Lỗi! " + res.data.message)
-    //     }
-    //   })
-    //   .catch(err => {
-    //     alert('Lỗi: ' + err)
-    //   })
-    //   .then(() => {
-    //     // dispatch(toggleLoading(false))
-    //     // dispatch(getAllProductsAsync({}))
-    //   })
   }
 
   return (

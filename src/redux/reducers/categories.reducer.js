@@ -7,14 +7,14 @@ const initState = {
 const categoriesReducer = (state = initState, action) => {
   const { payload, type } = action
   switch (type) {
-    case "GET_ALL_ CATEGORIES": {
+    case "GET_ALL_CATEGORIES": {
       return {
         ...state,
         categories: payload.categories,
       }
     }
 
-    case "CREATE_ONE_CHAPTER": {
+    case "CREATE_ONE_CATEGORY": {
       const { categories } = state
 
       return {
@@ -26,7 +26,7 @@ const categoriesReducer = (state = initState, action) => {
       }
     }
 
-    case "UPDATE_ONE_CHAPTER": {
+    case "UPDATE_ONE_CATEGORY": {
       const { categories } = state
       const { newChapter, index } = payload
       let newcategories = [
@@ -41,7 +41,7 @@ const categoriesReducer = (state = initState, action) => {
       }
     }
 
-    case "DELETE_ONE_STORY": {
+    case "DELETE_ONE_CATEGORY": {
       const { categories } = state
       let newcategories = categories.filter(x => x._id !== payload)
 

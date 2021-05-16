@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { getAllGuestsAsync } from "../../redux/actions";
 import toChar from "../../utils/toChar";
 
 const ClientMenu = ({ setCreateForm }) => {
   const dispatch = useDispatch();
+  const categories = useSelector(state => state.categories.categories)
 
   const [query, setQuery] = useState({});
 
@@ -64,28 +65,17 @@ const ClientMenu = ({ setCreateForm }) => {
               >
                 Tất cả
               </option>
-              <option value={JSON.stringify({ start: 0, end: 5000000 })}>
-                Vãng lai
-              </option>
-              <option value={JSON.stringify({ start: 5000000, end: 10000000 })}>
-                Tiềm năng
-              </option>
-              <option
-                value={JSON.stringify({ start: 10000000, end: 50000000 })}
-              >
-                VIP
-              </option>
-              <option
-                value={JSON.stringify({
-                  start: 50000000,
-                  end: 50000000000000000,
-                })}
-              >
-                Đặc biệt
-              </option>
+              {
+                categories && categories.length > 0 &&
+                categories.map(item =>
+                  <option value={JSON.stringify(item)}>
+                    {item.title}
+                  </option>
+                )
+              }
             </select>
           </li>
-        
+
         </ul>
       </div>
     </div>

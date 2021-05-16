@@ -2,12 +2,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
-// import { getAllGuestsAsync, removeGuestAsync } from '../../redux/actions'
-// import getMedal from '../../utils/getMedal'
-const ClientList = ({ setClientInfo, setUpdateForm, setProduct }) => {
-  const login = true
-  const guests = []
-  const guestPage = {}
+
+const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreateForm }) => {
+  const { stories, storyPage } = useSelector(state => state.stories)
 
   const dispatch = useDispatch()
 
@@ -23,53 +20,41 @@ const ClientList = ({ setClientInfo, setUpdateForm, setProduct }) => {
     <div id='client-list'>
       <div className='client-list-container'>
         {
-          guests && guests.length > 0 &&
+          stories && stories.length > 0 &&
           <ul>
             <li className='title-row'>
               <div className='info'>
                 <span style={{ width: '40%' }}>Tên</span>
                 <span style={{ width: '60%' }}>Số tập</span>
+                <span style={{ width: '60%' }}>Hoàn thành</span>
               </div>
               <div className='tools'>
-                {
-                  login &&
-                  <>
-                    <span>Thêm chap</span>
-                    <span>Sửa</span>
-                    <span>Xóa</span>
-                  </>
-                  ||
-                  <span>Địa chỉ</span>
-                }
+                <span>Thêm chap</span>
+                <span>Sửa</span>
+                <span>Xóa</span>
               </div>
             </li>
             {
-              guests.map((item, index) => {
+              stories.map((item, index) => {
                 if (index < 10) return (
                   <li key={item._id}>
                     <div className='info'>
                       <span className='name' onClick={() => setClientInfo({ status: true, info: item })}>
-                        {item.fullName}
+                        {item.title || 'Thám tử Conan'}
                       </span>
-                      <span className='school'>{item.school && `THPT ${item.school.name}` || <strong style={{ color: 'red' }}>Chưa cập nhật</strong>}</span>
+                      <span className='school'>{item.chapters && item.chapters.length || <strong style={{ color: 'red' }}>Chưa có truyện</strong>}</span>
+                      <span className='school'>{item.isCompleted && 'X'|| '-'}</span>
                     </div>
                     <div className='tools'>
-                      {
-                        login &&
-                        <>
-                          <button className='edit' onClick={() => setUpdateForm({ status: true, info: item })}>
-                            <i className="fas fa-pen-nib"></i>
-                          </button>
-                          <button className='edit' onClick={() => setUpdateForm({ status: true, info: item })}>
-                            <i className="fas fa-edit"></i>
-                          </button>
-                          <button onClick={() => deleteGuest(item._id)} className='remove'>
-                            <i className="fas fa-trash-alt"></i>
-                          </button>
-                        </>
-                        ||
-                        <span style={{ width: '100%' }}>{item.address}</span>
-                      }
+                      <button className='edit' onClick={() => setChapterCreateForm(true)}>
+                        <i className="fas fa-pen-nib"></i>
+                      </button>
+                      <button className='edit' onClick={() => setUpdateForm({ status: true, info: item, index: index })}>
+                        <i className="fas fa-edit"></i>
+                      </button>
+                      <button onClick={() => deleteGuest(item._id)} className='remove'>
+                        <i className="fas fa-trash-alt"></i>
+                      </button>
                     </div>
                   </li>
                 )
@@ -81,9 +66,9 @@ const ClientList = ({ setClientInfo, setUpdateForm, setProduct }) => {
         }
       </div>
       {
-        guestPage.totalPage > 1 &&
+        storyPage.totalPage > 1 &&
         <div className='client-pagination'>
-          <Pagination totalPage={guestPage.totalPage} currentPage={guestPage.currentPage} changePage={changePage} />
+          <Pagination totalPage={storyPage.totalPage} currentPage={storyPage.currentPage} changePage={changePage} />
         </div>
       }
     </div>

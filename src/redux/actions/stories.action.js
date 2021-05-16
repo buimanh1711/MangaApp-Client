@@ -46,7 +46,7 @@ export const createStory = (payload) => ({
 export const createStoryAsync = (newStory) => {
   return dispatch => {
     dispatch(toggleLoading(true))
-    
+
     API.createStory(newStory)
       .then(res => {
         if (res.data && res.data.status) {
@@ -68,21 +68,21 @@ export const createStoryAsync = (newStory) => {
   }
 }
 
-export const updateStory = (payload) => ({
-  type: "UDPATE_ONE_STORY",
-  payload
+export const updateStory = ({ newStory, index }) => ({
+  type: "UPDATE_ONE_STORY",
+  payload: { newStory, index }
 })
 
 export const updateStoryAsync = (_id, newStory, index) => {
   return dispatch => {
     dispatch(toggleLoading(true))
 
-    API.updateStory(_id, newStory)
+    API.updateStory(_id, newStory, index)
       .then((res) => {
         if (res.data && res.data.status) {
           dispatch(
             updateStory({
-              stories: res.data.newStory,
+              newStory: res.data.newStory,
               index
             })
           )

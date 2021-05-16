@@ -1,6 +1,8 @@
+import request from '../utils/request'
+
 export const getAllCategories = (query) => {
   const { page, search } = query || {}
-  let url = `/products?page=${page || 1}&`
+  let url = `/categories?page=${page || 1}&`
 
   if (search) {
     url = url + `search=${search}`
@@ -10,5 +12,5 @@ export const getAllCategories = (query) => {
 }
 
 export const createCategory = (data) => {
-  return request('/products', 'POST', data)
+  return request('/categories', 'POST', data)
 }

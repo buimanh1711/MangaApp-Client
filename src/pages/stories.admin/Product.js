@@ -14,7 +14,7 @@ const Product = ({ product, setProduct }) => {
   const { user } = product;
   const products = []
   const dispatch = useDispatch();
-  const [majors, setMajors] = useState([])
+  const [majors, setMajors] = useState([1,2,3,4,5,6,6])
 
   const buyProduct = (data) => {
     // dispatch(toggleLoading(true));
@@ -50,7 +50,7 @@ const Product = ({ product, setProduct }) => {
   }
   return (
     <>
-      {(product.status && (
+      {(!product.status && (
         <div id="client-client-add">
           <div className="client-add-container">
             <div className="form">

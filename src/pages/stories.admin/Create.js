@@ -4,30 +4,19 @@ import { useSelector, useDispatch } from 'react-redux'
 // import { getAllUsersAsync, toggleLoading } from '../../redux/actions'
 // import { createUser } from '../../services/global'
 import toChar from '../../utils/toChar'
+import { createStoryAsync } from '../../redux/actions/stories.action'
 
 const Create = ({ status, setCreateForm }) => {
   const dispatch = useDispatch()
-  const countries = []
+  const categories = useSelector(state => state.categories.categories)
 
   const [file, setFile] = useState(null)
   const [data, getData] = useState({ name: '', path: '/images/product_default_img.png' })
 
-  const nameEl = useRef(null)
-  const idEl = useRef(null)
-  const phoneEl = useRef(null)
-  const mailEl = useRef(null)
-  const addEl = useRef(null)
-  const schoolEl = useRef(null)
-  const usernameEl = useRef(null)
-  const passwordEl = useRef(null)
+  const [currentCategories, setCurrentCategories] = useState([])
 
-  useEffect(() => {
-    // if (!login) {
-    //   setTimeout(() => {
-    //     history.replace('/login')
-    //   }, 1000)
-    // }
-  }, [])
+  const titleEl = useRef(null)
+  const shortDescriptionEl = useRef(null)
 
   const handleChange = (e) => {
     const selectedFile = e.target.files[0]
@@ -43,61 +32,33 @@ const Create = ({ status, setCreateForm }) => {
     }
   }
 
-
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const fullName = nameEl.current.value.trim()
-    // const id = idEl.current.value.trim()
-    const phone = phoneEl.current.value.trim()
-    const email = mailEl.current.value.trim()
-    const address = addEl.current.value.trim()
-    const username = usernameEl.current.value.trim()
-    const password = passwordEl.current.value.trim()
-    const text = toChar(fullName)
-
-    // const data = {
-    //   fullName, email, phone, address, username, password, image: file, text
-    // }
-
+    const title = titleEl.current.value.trim()
+    const shortDescription = shortDescriptionEl.current.value.trim()
+    const text = toChar(title)
+    console.log(currentCategories)
     const formData = new FormData()
-    formData.append('fullName', fullName)
-    formData.append('phone', phone)
-    formData.append('email', email)
-    formData.append('address', address)
-    formData.append('username', username)
-    formData.append('password', password)
+    formData.append('title', title)
+    formData.append('shortDescription', shortDescription)
+    formData.append('categories', currentCategories)
     formData.append('text', text)
     formData.append('image', file)
 
-    // dispatch(toggleLoading(true))
-    // createUser(formData)
-    //   .then(res => {
-    //     setCreateForm(false)
+    dispatch(createStoryAsync(formData))
+  }
 
-    //     if (res.data && res.data.status) {
-    //       dispatch({
-    //         type: 'CREATE_USER',
-    //         payload: res.data.staff
-    //       })
-    //     } else {
-    //       alert(res.data.message)
-    //       // dispatch(triggerNotif({
-    //       //   type: 'ERROR',
-    //       //   content: res.data.message
-    //       // }))
-    //     }
-    //   })
-    //   .catch(err => {
-    //     // dispatch(triggerNotif({
-    //     //   type: 'ERROR',
-    //     //   content: 'SERVER_ERROR!'
-    //     // }))
-    //   })
-    //   .then(() => {
-    //     dispatch(toggleLoading(false))
-    //     dispatch(getAllUsersAsync({}))
-    //   })
+  const addCate = (category) => {
+    setCurrentCategories([
+      ...currentCategories,
+      category
+    ])
+  }
+
+  const removeCate = (category) => {
+    const newCategories = currentCategories.filter(x => x !== category)
+    setCurrentCategories(newCategories)
   }
 
   return (
@@ -123,36 +84,44 @@ const Create = ({ status, setCreateForm }) => {
                 </div>
                 <div className='create-name'>
                   <label htmlFor='create_name'>Tên truyện: </label>
-                  <input required ref={nameEl} id='create_name' />
+                  <input required ref={titleEl} id='create_name' />
                 </div>
-                {/* <div className='create-id'>
-                  <label htmlFor='create_id'>CMND: </label>
-                  <input required ref={idEl} id='create_id' />
-                </div> */}
-                {/* <div className='create-phone'>
-                  <label htmlFor='create_phone'>SĐT: </label>
-                  <input required ref={phoneEl} id='create_phone' />
-                </div> */}
-                {/* <div className='create-mail'>
-                  <label htmlFor='create_mail'>email: </label>
-                  <input required ref={mailEl} id='create_mail' />
-                </div> */}
                 <div className='create-cate'>
                   <label htmlFor='create_cate'>Mô tả ngắn: </label>
-                  <input required ref={addEl} id='create_cate' />
+                  <input required ref={shortDescriptionEl} id='create_cate' />
                 </div>
                 <div className='create-category'>
-                  <select required defaultValue='Trường THPT' ref={schoolEl} name="categories">
-                    <option value="Trường THPT" disabled hidden>Trường THPT</option>
+                  <strong>Chọn chuyên mục:</strong>
+                  <div className='row'>
                     {
-                      countries && countries.length > 0 &&
-                      countries.map(item =>
-                        <option key={item.id} value={JSON.stringify(item)}>
-                          {item.name}
-                        </option>
-                      )
+                      categories.length > 0 &&
+                      categories.map(item => {
+                        let check = false
+                        if (currentCategories) {
+                          currentCategories.forEach(item2 => {
+                            if (item2 === item._id) {
+                              check = true
+                            }
+                          })
+                        }
+                        if (check) {
+                          return (
+                            <span onClick={() => removeCate(item._id)} class='col-6'>
+                            <i style={{ color: 'green'}} className={"fas fa-check"}></i>
+                            {item.title}
+                          </span>
+                          )
+                        } else {
+                          return (
+                            <span onClick={() => addCate(item._id)} class='col-6'>
+                              <i style={{ color: 'blue' }} className={"fas fa-plus"}></i>
+                              {item.title}
+                            </span>
+                          )
+                        }
+                      })
                     }
-                  </select>
+                  </div>
                 </div>
                 {/* <div className='create-username'>
                   <label htmlFor='create_username'>Tài khoản: </label>
