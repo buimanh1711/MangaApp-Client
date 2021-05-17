@@ -5,72 +5,33 @@ import { useSelector, useDispatch } from 'react-redux'
 // import { createProduct } from '../../services/global'
 import toChar from '../../utils/toChar'
 import Editor from '../../global/CkEditor'
+import { createChapterAsync } from '../../redux/actions/chapters.actions'
 
-const ChapterCreate = ({ status, setChapterCreateForm }) => {
-  const history = useHistory()
+const ChapterCreate = ({ chapterCreateForm, setChapterCreateForm }) => {
+  const { info } = chapterCreateForm
 
   const dispatch = useDispatch()
 
-  const [description, setDescription] = useState('Đang cập nhật')
+  const [content, setContent] = useState('Đang cập nhật')
   const nameEl = useRef(null)
-  const yearsEl = useRef(null)
-  const targetEl = useRef(null)
-  const blockEl = useRef(null)
-  const certEl = useRef(null)
-
-
-  useEffect(() => {
-    // if (!login) {
-    //   setTimeout(() => {
-    //     history.replace('/login')
-    //   }, 1000)
-    // }
-  }, [])
-
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const name = nameEl.current.value.trim()
-    const years = yearsEl.current.value
-    const target = targetEl.current.value
-    const block = blockEl.current.value.trim()
-    const cert = certEl.current.value
     const text = toChar(name)
-
+    const story = info._id
     const data = {
-      name, description, years, text, target, cert, block
+      name, content, text, story
     }
 
-    // dispatch(toggleLoading(true))
-    // createProduct(data)
-    //   .then(res => {
-    //     if (res.data && res.data.status) {
-    //       setChapterCreateForm(false)
-
-    //       dispatch({
-    //         type: 'CREATE_PRODUCT',
-    //         payload: {
-    //           ...res.data.newProduct,
-    //         }
-    //       })
-    //     } else {
-    //       alert("Lỗi! " + res.data.message)
-    //     }
-    //   })
-    //   .catch(err => {
-    //     alert('Lỗi: ' + err)
-    //   })
-    //   .then(() => {
-    //     // dispatch(toggleLoading(false))
-    //     // dispatch(getAllProductsAsync({}))
-    //   })
+    dispatch(createChapterAsync(data, setChapterCreateForm({status: false, info: {}})))
   }
 
   return (
     <>
       {
-        status &&
+        chapterCreateForm.status &&
         <div id='client-create-chapter'>
           <div className='create-container'>
             <form onSubmit={handleSubmit} className='create-form'>
@@ -84,7 +45,7 @@ const ChapterCreate = ({ status, setChapterCreateForm }) => {
                   <input placeholder='VD: Khoa học máy tính' required ref={nameEl} id='create_name' name='major_name' />
                 </div>
                 <div className='create-desc'>
-                  <Editor setDescription={setDescription} />
+                  <Editor setContent={setContent} />
                 </div>
                 <button className='sm-btn' type='submit'>Thêm</button>
               </div>

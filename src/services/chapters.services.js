@@ -8,8 +8,8 @@ export const updateChapter = (_id, data) => {
   return request(`/chapters/${_id}`, 'PUT', data)
 }
 
-export const deleteChapter = (_id) => {
-  return request(`/chapters/${_id}`, 'DELETE', data)
+export const deleteChapter = (_id, storyId) => {
+  return request(`/chapters/${_id}/${storyId}`, 'DELETE')
 }
 
 export const getAllChapters = (query) => {

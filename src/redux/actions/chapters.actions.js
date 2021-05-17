@@ -1,4 +1,5 @@
 import * as API from '../../services/chapters.services'
+import { getAllStoriesAsync } from './stories.action'
 import { toggleLoading } from './web.actions'
 
 export const getAllChapters = (payload) => ({
@@ -43,13 +44,15 @@ export const createChapter = (payload) => ({
   payload
 })
 
-export const createChapterAsync = (newChapter) => {
+export const createChapterAsync = (newChapter, callback) => {
   return dispatch => {
     dispatch(toggleLoading(true))
     
     API.createChapter(newChapter)
       .then(res => {
         if (res.data && res.data.status) {
+          if (callback) callback()
+          dispatch(getAllStoriesAsync({}, true))
           dispatch(
             createChapter(res.data.newChapter)
           )

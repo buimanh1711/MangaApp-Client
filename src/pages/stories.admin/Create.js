@@ -46,7 +46,7 @@ const Create = ({ status, setCreateForm }) => {
     formData.append('text', text)
     formData.append('image', file)
 
-    dispatch(createStoryAsync(formData))
+    dispatch(createStoryAsync(formData, setCreateForm(false)))
   }
 
   const addCate = (category) => {

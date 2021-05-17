@@ -43,15 +43,18 @@ export const createStory = (payload) => ({
   payload
 })
 
-export const createStoryAsync = (newStory) => {
+export const createStoryAsync = (newStory, callback) => {
   return dispatch => {
     dispatch(toggleLoading(true))
 
     API.createStory(newStory)
       .then(res => {
         if (res.data && res.data.status) {
+          if (callback) {
+            callback()
+          }
           dispatch(
-            createStory(res.data.newStory)
+            getAllStoriesAsync({}, true)
           )
         } else {
           alert('ERROR! ' + res.data.message)
@@ -73,18 +76,17 @@ export const updateStory = ({ newStory, index }) => ({
   payload: { newStory, index }
 })
 
-export const updateStoryAsync = (_id, newStory, index) => {
+export const updateStoryAsync = (_id, newStory, index, callback) => {
   return dispatch => {
     dispatch(toggleLoading(true))
-
     API.updateStory(_id, newStory, index)
       .then((res) => {
         if (res.data && res.data.status) {
+          if (callback) {
+            callback()
+          }
           dispatch(
-            updateStory({
-              newStory: res.data.newStory,
-              index
-            })
+            getAllStoriesAsync({}, true)
           )
         } else {
           alert('ERROR! ' + res.data.message)
@@ -106,6 +108,7 @@ export const removeStoryAsync = (_id) => {
     API.deleteStory(_id)
       .then((res) => {
         if (res.data && res.data.status) {
+          alert('Xóa thành công!')
           dispatch(removeStory(_id))
         } else {
           alert('ERROR! ' + res.data.message)

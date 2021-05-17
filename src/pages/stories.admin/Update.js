@@ -63,7 +63,7 @@ const Update = ({ updateForm, setUpdateForm }) => {
       formData.append('newImage', file)
     }
 
-    dispatch(updateStoryAsync(info._id, formData, index))
+    dispatch(updateStoryAsync(info._id, formData, index, setUpdateForm({status: false, info: {}})))
 
   }
 

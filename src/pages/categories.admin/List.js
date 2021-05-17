@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
+import { removeCategoryAsync } from '../../redux/actions/categories.actions'
 import { toggleLoading } from '../../redux/actions/web.actions'
 import { getAllCategories } from '../../services/categories.services'
 
@@ -10,8 +11,8 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
   const productPage = {}
   const dispatch = useDispatch()
 
-  const deleteProduct = (_id) => {
-    // dispatch(removeProductAsync(_id))
+  const deleteCategory = (_id) => {
+    dispatch(removeCategoryAsync(_id))
   }
 
   const changePage = (page) => {
@@ -52,7 +53,7 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
                       <button className='edit' onClick={() => setUpdateForm({ status: true, info: item })}>
                         <i className="fas fa-edit"></i>
                       </button>
-                      <button onClick={() => deleteProduct(item._id)} className='remove'>
+                      <button onClick={() => deleteCategory(item._id)} className='remove'>
                         <i className="fas fa-trash-alt"></i>
                       </button>
                     </div>

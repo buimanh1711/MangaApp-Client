@@ -100,30 +100,31 @@ export const createCategoryAsync = (newCategory) => {
 //   }
 // }
 
-// export const removeChapterAsync = (_id) => {
-//   return (dispatch) => {
-//     API.deleteChapter(_id)
-//       .then((res) => {
-//         if (res.data && res.data.status) {
-//           dispatch(removeChapter(_id))
-//         } else {
-//           alert('ERROR! ' + res.data.message)
-//         }
-//       })
-//       .catch((err) => {
-//         dispatch(
-//           alert('ERROR! ' + err)
-//         )
-//       })
-//       .then(() => {
-//         dispatch(toggleLoading(false))
-//       })
-//   }
-// }
+export const removeCategoryAsync = (_id) => {
+  return (dispatch) => {
+    API.removeCategory(_id)
+      .then((res) => {
+        if (res.data && res.data.status) {
+          alert('Xóa thành công!')
+          dispatch(removeCategory(_id))
+        } else {
+          alert('ERROR! ' + res.data.message)
+        }
+      })
+      .catch((err) => {
+        dispatch(
+          alert('ERROR! ' + err)
+        )
+      })
+      .then(() => {
+        dispatch(toggleLoading(false))
+      })
+  }
+}
 
-// export const removeChapter = (payload) => {
-//   return {
-//     type: "DELETE_ONE_CHAPTER",
-//     payload,
-//   }
-// }
+export const removeCategory = (payload) => {
+  return {
+    type: "DELETE_ONE_CATEGORY",
+    payload,
+  }
+}

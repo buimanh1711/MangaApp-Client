@@ -2,14 +2,19 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
+import { removeStoryAsync, updateStoryAsync } from '../../redux/actions/stories.action'
 
 const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreateForm }) => {
   const { stories, storyPage } = useSelector(state => state.stories)
 
   const dispatch = useDispatch()
 
-  const deleteGuest = (_id) => {
-    // dispatch(removeGuestAsync(_id))
+  const deleteStory = (_id) => {
+    dispatch(removeStoryAsync(_id))
+  }
+
+  const completeStory = (_id, item, index) => {
+    dispatch(updateStoryAsync(_id, {...item, isCompleted: true}, index))
   }
 
   const changePage = (page) => {
@@ -43,16 +48,16 @@ const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreate
                         {item.title || 'Thám tử Conan'}
                       </span>
                       <span className='school'>{item.chapters && item.chapters.length || <strong style={{ color: 'red' }}>Chưa có truyện</strong>}</span>
-                      <span className='school'>{item.isCompleted && 'X'|| '-'}</span>
+                      <span className='school'>{!item.isCompleted && <i onClick={() => completeStory(item._id, item, index)} className="fas fa-check-circle"></i>|| <i className="far fa-check-circle"></i>}</span>
                     </div>
                     <div className='tools'>
-                      <button className='edit' onClick={() => setChapterCreateForm(true)}>
+                      <button className='edit' onClick={() => setChapterCreateForm({status: true, info: item})}>
                         <i className="fas fa-pen-nib"></i>
                       </button>
                       <button className='edit' onClick={() => setUpdateForm({ status: true, info: item, index: index })}>
                         <i className="fas fa-edit"></i>
                       </button>
-                      <button onClick={() => deleteGuest(item._id)} className='remove'>
+                      <button onClick={() => deleteStory(item._id)} className='remove'>
                         <i className="fas fa-trash-alt"></i>
                       </button>
                     </div>

@@ -14,3 +14,7 @@ export const getAllCategories = (query) => {
 export const createCategory = (data) => {
   return request('/categories', 'POST', data)
 }
+
+export const removeCategory = (_id) => {
+  return request(`/categories/${_id}`, 'DELETE')
+}
