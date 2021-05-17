@@ -21,7 +21,7 @@ const ProductMenu = ({ setCreateForm }) => {
               <button onClick={() => setCreateForm(true)}>
                 <i className="fas fa-plus"></i>
                 <span>
-                  Thêm chuyện ngành mới
+                  Thêm chuyên mục mới
               </span>
               </button>
             </li>

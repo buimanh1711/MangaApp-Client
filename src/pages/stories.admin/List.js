@@ -14,7 +14,7 @@ const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreate
   }
 
   const completeStory = (_id, item, index) => {
-    dispatch(updateStoryAsync(_id, {...item, isCompleted: true}, index))
+    dispatch(updateStoryAsync(_id, { ...item, isCompleted: true }, index))
   }
 
   const changePage = (page) => {
@@ -31,6 +31,7 @@ const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreate
               <div className='info'>
                 <span style={{ width: '40%' }}>Tên</span>
                 <span style={{ width: '60%' }}>Số tập</span>
+                <span style={{ width: '60%' }}>Theo dõi</span>
                 <span style={{ width: '60%' }}>Hoàn thành</span>
               </div>
               <div className='tools'>
@@ -47,11 +48,12 @@ const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreate
                       <span className='name' onClick={() => setClientInfo({ status: true, info: item })}>
                         {item.title || 'Thám tử Conan'}
                       </span>
-                      <span className='school'>{item.chapters && item.chapters.length || <strong style={{ color: 'red' }}>Chưa có truyện</strong>}</span>
-                      <span className='school'>{!item.isCompleted && <i onClick={() => completeStory(item._id, item, index)} className="fas fa-check-circle"></i>|| <i className="far fa-check-circle"></i>}</span>
+                      <span className='school'><strong style={{ color: 'red' }}>{item.chapters && item.chapters.length || 0}</strong></span>
+                      <span className='school'><strong style={{ color: 'red' }}>{item.follows && item.follows.length || 0}</strong></span>
+                      <span className='school'>{!item.isCompleted && <i onClick={() => completeStory(item._id, item, index)} className="fas fa-check-circle"></i> || <i className="far fa-check-circle"></i>}</span>
                     </div>
                     <div className='tools'>
-                      <button className='edit' onClick={() => setChapterCreateForm({status: true, info: item})}>
+                      <button className='edit' onClick={() => setChapterCreateForm({ status: true, info: item })}>
                         <i className="fas fa-pen-nib"></i>
                       </button>
                       <button className='edit' onClick={() => setUpdateForm({ status: true, info: item, index: index })}>
