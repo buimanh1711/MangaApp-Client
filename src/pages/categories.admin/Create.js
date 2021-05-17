@@ -17,7 +17,7 @@ const Create = ({ status, setCreateForm }) => {
       title: name
     }
 
-    dispatch(createCategoryAsync(data))
+    dispatch(createCategoryAsync(data, setCreateForm(false)))
 
   }
 

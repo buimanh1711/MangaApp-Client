@@ -31,26 +31,6 @@ const Update = ({ updateForm, setUpdateForm }) => {
     const data = {
       name, description: description || info.description , years, text, target, cert
     }
-
-    // dispatch(toggleLoading(true))
-    // updateProduct(info._id, data)
-    //   .then(res => {
-    //     if (res.data && res.data.status) {
-    //       dispatch({
-    //         type: 'UPDATE_PRODUCT',
-    //         payload: { ...res.data.newProduct, ...data }
-    //       })
-    //     } else {
-    //       alert('Chuyên ngành đã tồn tại')
-    //     }
-    //   })
-    //   .catch(err => {
-    //     alert('Lỗi: ' + err)
-    //   })
-    //   .then(() => {
-    //     dispatch(toggleLoading(false))
-    //     setUpdateForm({ status: false, updateForm: {} })
-    //   })
   }
 
   return (

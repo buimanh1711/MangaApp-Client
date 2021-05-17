@@ -14,11 +14,12 @@ const ClientInfo = ({ clientInfo, setClientInfo, setChapterUpdateForm }) => {
   const [story, setStory] = useState({})
 
   useEffect(() => {
-    dispatch(toggleLoading(true))
     if (info._id) {
+      dispatch(toggleLoading(true))
       getOneStory(info._id)
         .then(res => {
           if (res.data && res.data.status) {
+            dispatch(toggleLoading(false))
             setStory(res.data.story)
           } else {
             alert('Lỗi: ' + res.data.message)
@@ -26,7 +27,7 @@ const ClientInfo = ({ clientInfo, setClientInfo, setChapterUpdateForm }) => {
         })
         .catch(err => alert(err))
         .then(() => {
-          dispatch(toggleLoading(true))
+          dispatch(toggleLoading(false))
         })
     }
   }, [info])
@@ -46,17 +47,17 @@ const ClientInfo = ({ clientInfo, setClientInfo, setChapterUpdateForm }) => {
       .then(() => {
         dispatch(toggleLoading(false))
         getOneStory(info._id)
-        .then(res => {
-          if (res.data && res.data.status) {
-            setStory(res.data.story)
-          } else {
-            alert('Lỗi: ' + res.data.message)
-          }
-        })
-        .catch(err => alert(err))
-        .then(() => {
-          dispatch(toggleLoading(false))
-        })
+          .then(res => {
+            if (res.data && res.data.status) {
+              setStory(res.data.story)
+            } else {
+              alert('Lỗi: ' + res.data.message)
+            }
+          })
+          .catch(err => alert(err))
+          .then(() => {
+            dispatch(toggleLoading(false))
+          })
       })
   }
 
@@ -116,7 +117,7 @@ const ClientInfo = ({ clientInfo, setClientInfo, setChapterUpdateForm }) => {
                                 <span>{date(item.chapter.createAt)}</span>
                                 <span style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                                   <i onClick={() => { setChapterUpdateForm({ status: true, info: item.chapter }) }} style={{ color: 'blue', cursor: 'pointer' }} className="fas fa-edit"></i>
-                                  <i  onClick ={() => removeChapter(item.chapter._id, story._id)} style={{ color: 'red', cursor: 'pointer' }} className="far fa-trash-alt"></i>
+                                  <i onClick={() => removeChapter(item.chapter._id, story._id)} style={{ color: 'red', cursor: 'pointer' }} className="far fa-trash-alt"></i>
                                 </span>
                               </li>
                             )

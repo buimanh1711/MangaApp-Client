@@ -8,7 +8,7 @@ import Update from "./Update"
 import Product from "./Product"
 import { useDispatch } from "react-redux"
 import ChapterUpdate from "./ChapterUpdate"
-// import { getAllGuestsAsync } from "../../redux/actions"
+import { getAllStoriesAsync } from "../../redux/actions/stories.action"
 
 const Client = () => {
   const dispatch = useDispatch()
@@ -26,7 +26,7 @@ const Client = () => {
       payload: 'Tuyển sinh'
     })
 
-    // dispatch(getAllGuestsAsync({}, true))
+    dispatch(getAllStoriesAsync({}, true))
   }, [])
 
   return (

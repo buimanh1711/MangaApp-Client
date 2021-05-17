@@ -13,6 +13,8 @@ export const getAllStoriesAsync = (query, loading) => {
     API.getAllStories(query)
       .then((res) => {
         if (res.data && res.data.status) {
+          dispatch(toggleLoading(false))
+
           dispatch(
             getAllStories({
               stories: res.data.stories,

@@ -41,29 +41,6 @@ const Create = ({ status, setCreateForm }) => {
       name, description, years, text, target, cert, block
     }
 
-    // dispatch(toggleLoading(true))
-    // createProduct(data)
-    //   .then(res => {
-    //     if (res.data && res.data.status) {
-    //       setCreateForm(false)
-
-    //       dispatch({
-    //         type: 'CREATE_PRODUCT',
-    //         payload: {
-    //           ...res.data.newProduct,
-    //         }
-    //       })
-    //     } else {
-    //       alert("Lỗi! " + res.data.message)
-    //     }
-    //   })
-    //   .catch(err => {
-    //     alert('Lỗi: ' + err)
-    //   })
-    //   .then(() => {
-    //     dispatch(toggleLoading(false))
-    //     dispatch(getAllProductsAsync({}))
-    //   })
   }
 
   return (

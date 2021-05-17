@@ -17,23 +17,7 @@ const Product = ({ product, setProduct }) => {
   const [majors, setMajors] = useState([1,2,3,4,5,6,6])
 
   const buyProduct = (data) => {
-    // dispatch(toggleLoading(true));
-    // addProduct(user._id, data._id)
-    //   .then((res) => {
-    //     if (res.data && res.data.status) {
-    //       setMajors([...majors, data._id])
-    //       alert("Thêm chuyên ngành thành công!");
-    //       dispatch(getAllGuestsAsync({}));
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     alert(err);
-    //   })
-    //   .then(() => {
-    //     dispatch(toggleLoading(false));
-    //     dispatch(getAllProductsAsync({}));
-    //     // setProduct({ status: false, info: {} });
-    //   });
+
   };
 
   const search = (e) => {

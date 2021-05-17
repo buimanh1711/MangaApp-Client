@@ -41,7 +41,7 @@ export const createCategory = (payload) => ({
   payload
 })
 
-export const createCategoryAsync = (newCategory) => {
+export const createCategoryAsync = (newCategory, callback) => {
   return dispatch => {
     dispatch(toggleLoading(true))
     
@@ -49,6 +49,7 @@ export const createCategoryAsync = (newCategory) => {
       .then(res => {
         console.log(res)
         if (res.data && res.data.status) {
+          if (callback) callback()
           dispatch(
             createCategory(res.data.newCategory)
           )

@@ -28,9 +28,10 @@ const ChapterUpdate = ({ chapterUpdateForm, setChapterUpdateForm, setClientInfo 
     updateChapter(info._id, data)
       .then(res => {
         if (res.data && res.data.status) {
-          setChapterUpdateForm({status: false, info: {}})
-          setClientInfo({status: false, info: {}})
+          setChapterUpdateForm({ status: false, info: {} })
+          setClientInfo({ status: false, info: {} })
           dispatch(getAllStoriesAsync({}, true))
+          dispatch(toggleLoading(false))
         } else {
           alert("Lỗi! " + res.data.message)
         }
