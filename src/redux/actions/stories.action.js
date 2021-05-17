@@ -30,9 +30,7 @@ export const getAllStoriesAsync = (query, loading) => {
         }
       })
       .catch((err) => {
-        dispatch(
-          alert('ERROR! ' + err)
-        )
+        alert('ERROR! ' + err)
       })
       .then(() => {
         dispatch(toggleLoading(false))

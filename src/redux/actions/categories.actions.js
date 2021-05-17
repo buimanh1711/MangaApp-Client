@@ -26,9 +26,7 @@ export const getAllCategoriesAsync = (query) => {
         }
       })
       .catch((err) => {
-        dispatch(
-          alert('ERROR! ' + err)
-        )
+        alert('ERROR! ' + err)
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -44,7 +42,7 @@ export const createCategory = (payload) => ({
 export const createCategoryAsync = (newCategory, callback) => {
   return dispatch => {
     dispatch(toggleLoading(true))
-    
+
     API.createCategory(newCategory)
       .then(res => {
         console.log(res)
@@ -58,9 +56,7 @@ export const createCategoryAsync = (newCategory, callback) => {
         }
       })
       .catch((err) => {
-        dispatch(
-          alert('ERROR! ' + err)
-        )
+        alert('ERROR! ' + err)
       })
       .then(() => {
         dispatch(toggleLoading(false))
