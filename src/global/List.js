@@ -9,7 +9,7 @@ const StoriesList = ({ stories }) => {
             stories && stories.length > 0 && stories.map(item => (
               <div className='col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 custom-gutter'>
                 <div className='item-container'>
-                  <span className='category'>{item.categories && (item.categories.length > 0 && item.categories[1].category) && item.categories[1].category.title || '...'}</span>
+                  <span className='category'>{item.categories && (item.categories.length > 0 && item.categories[0].category) && item.categories[0].category.title || '...'}</span>
                   <div className='thumb'>
                     <Link>
                       <img src={item.image && item.image.url || '/images/product_default_img.png'} />
