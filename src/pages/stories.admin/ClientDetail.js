@@ -114,7 +114,7 @@ const ClientInfo = ({ clientInfo, setClientInfo, setChapterUpdateForm }) => {
                               <li key={item.chapter._id}>
                                 <span className='count'>{index + 1}</span>
                                 <span>{item.chapter.name}</span>
-                                <span>{date(item.chapter.createAt)}</span>
+                                <span>{date(item.chapter.createdAt)}</span>
                                 <span style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                                   <i onClick={() => { setChapterUpdateForm({ status: true, info: item.chapter }) }} style={{ color: 'blue', cursor: 'pointer' }} className="fas fa-edit"></i>
                                   <i onClick={() => removeChapter(item.chapter._id, story._id)} style={{ color: 'red', cursor: 'pointer' }} className="far fa-trash-alt"></i>

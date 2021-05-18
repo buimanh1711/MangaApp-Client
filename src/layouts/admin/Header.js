@@ -19,7 +19,7 @@ const Header = () => {
               <div className='avt-wrapper'>
                 <img src={image && image.url || '/images/user_default_img.png'} />
               </div>
-              <span>{`${fullName} (${role})`}</span>
+              <span>Admin</span>
               <button style={{ zIndex: 10 }}>
                 <Link to='/login'>
                   Đăng xuất
@@ -27,7 +27,7 @@ const Header = () => {
               </button>
             </>
             ||
-            <Link to='/login'><i style={{marginRight: 12 }} className="fas fa-sign-in-alt"></i><strong>Đăng nhập</strong></Link>
+            <Link to='/login'><i style={{ marginRight: 12 }} className="fas fa-sign-in-alt"></i><strong>Đăng nhập</strong></Link>
           }
         </div>
       </div>

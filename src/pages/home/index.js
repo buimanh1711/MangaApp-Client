@@ -1,5 +1,6 @@
-import Collection1 from "./collection1"
-import Collection2 from "./collection2"
+import StoriesList from "../../global/List"
+import Collection1 from "./Collection1"
+import Collection2 from "./Collection2"
 
 const Home = () => {
   return (
@@ -8,7 +9,7 @@ const Home = () => {
         <div className='container'>
           <Collection1 />
           <Collection2 />
-          <Collection1 />
+          <StoriesList />
         </div>
       </div>
     </div>

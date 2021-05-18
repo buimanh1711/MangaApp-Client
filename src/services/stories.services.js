@@ -1,10 +1,10 @@
 import request from '../utils/request'
 
 export const getAllStories = (query) => {
-  const { category, sort, page, search } = query
+  const { categories, sort, page, search } = query
 
-  var url = `/stories?page=${page || 1}&sort=${sort || 'createAt'}`
-  if (category) url = url + `category=${category}&`
+  var url = `/stories?page=${page || 1}&sort=${sort || 'createdAt'}&`
+  if (categories) url = url + `categories=${categories}&`
   if (search) url = url + `search=${search}&`
 
   return request(url, "GET")

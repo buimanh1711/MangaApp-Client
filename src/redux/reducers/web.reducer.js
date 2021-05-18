@@ -10,15 +10,15 @@ const initState = {
     },
     {
       title: "Thể loại",
-      path: "/categories/:categoryId",
+      path: "/categories",
     },
     {
-      title: "Sắp xếp",
-      path: "/stories/:sort",
+      title: "Mới nhất",
+      path: "/latest",
     },
     {
       title: "Theo dõi",
-      path: "/follow",
+      path: "/follows",
     }
   ],
   adminMenu: [

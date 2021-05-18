@@ -4,6 +4,19 @@
 @media (max-width: 1199.98px) {
 }
 @media (max-width: 991.98px) {
+  .collection1 .collection1-container .main-item {
+    position: static;
+  }
+
+  .collection1 .collection1-container .main-item .image-wrapper {
+    aspect-ratio: 4/3;
+    height: unset;
+  }
+
+  .collection1 .collection1-container .main-item .image-wrapper .title {
+    font-size: 1rem;
+  }
+
   #filter .filter-tag-container {
     margin-bottom: 32px;
   }
