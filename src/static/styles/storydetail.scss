@@ -8,6 +8,7 @@
         aspect-ratio: 4/3;
         border: 1px solid rgba(233, 156, 68, 0.664);
         border-radius: 8px;
+        object-fit: cover;
       }
     }
     .main-info {
@@ -25,6 +26,9 @@
       strong {
         color: var(--primary-color);
       }
+      p {
+        font-size: 1rem;
+      }
       ul {
         margin: 0;
         padding: 0;
@@ -34,10 +38,11 @@
         }
         li.title {
           margin-right: 12px;
+          font-size: 1rem;
         }
         li.cate {
           padding: 2px 8px;
-          font-size: 1rem;
+          font-size: .9rem;
           border-radius: 4px;
           color: var(--primary-color);
           border: 1px solid var(--primary-color);
@@ -67,7 +72,7 @@
         width: 100%;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 4;
+        -webkit-line-clamp: 3;
         overflow: hidden;
         font-style: italic;
         text-indent: 16px;

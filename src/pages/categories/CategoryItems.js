@@ -46,12 +46,12 @@ const CategoryItems = ({ category }) => {
                   <div className='item-container'>
                     <span className='category'>{item.categories && (item.categories.length > 0 && item.categories[0].category) && item.categories[0].category.title || '...'}</span>
                     <div className='thumb'>
-                      <Link>
+                      <Link to={`/stories/${item._id}`}>
                         <img src={item.image && item.image.url || '/images/product_default_img.png'} />
                       </Link>
                     </div>
                     <div className='info'>
-                      <Link>{item.title || 'Chưa cập nhật!'}</Link>
+                      <Link to={`/stories/${item._id}`}>{item.title || 'Chưa cập nhật!'}</Link>
                       <p>
                         125 Chương
                       </p>

@@ -32,6 +32,7 @@ import Loading from './global/Loading'
 import Categories from './pages/categories'
 import LatestStories from './pages/Latest'
 import DetailStory from './pages/storyDetail'
+import FollowStories from './pages/follow'
 
 function App() {
   const dispatch = useDispatch()
@@ -65,6 +66,11 @@ function App() {
         <Route path='/stories'>
           <MainLayout>
             <Stories />
+          </MainLayout>
+        </Route>
+        <Route path='/follows'>
+          <MainLayout>
+            <FollowStories />
           </MainLayout>
         </Route>
         <Route path='/latest'>
