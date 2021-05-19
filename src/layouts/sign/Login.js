@@ -76,7 +76,6 @@ const Login = (props) => {
       dispatch(toggleLoading(true))
       loginAuth(userData)
         .then(res => {
-          console.log(res)
           if (res.data && res.data.status) {
             dispatch(getUserData({
               ...res.data.user,

@@ -1,11 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import SideBar from "./SideBar"
 import MainContent from "./MainContent"
+import { useSelector } from "react-redux"
+import { useHistory } from 'react-router-dom'
 
 const Admin = () => {
-  
-  const [mbSide, setMbSide] = useState(true)
+  const login = localStorage.getItem('login')
+  const role = localStorage.getItem('role')
 
+  const history = useHistory()
+
+  const [mbSide, setMbSide] = useState(true)
+  useEffect(() => {
+    if (!login || role !== 'admin') 
+      history.push('/login')
+  }, [login, role])
+  
   return (
     <div id='main-layout'>
       <div className='row no-gutters'>

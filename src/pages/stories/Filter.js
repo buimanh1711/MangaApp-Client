@@ -144,8 +144,8 @@ const Filter = ({ setFilters }) => {
             </li>
             <li className={currentFilter.date.type && 'filter-item active' || 'filter-item'}>Ngày tạo
               <ul className='filter-menu'>
-                <li onClick={() => filterByDate({ name: 'Mới nhất', type: 'createdAt' })}>Mới nhất</li>
-                <li onClick={() => filterByDate({ name: 'Cũ nhất', type: '-createdAt' })}>Cũ nhất</li>
+                <li onClick={() => filterByDate({ name: 'Mới nhất', type: '-createdAt' })}>Mới nhất</li>
+                <li onClick={() => filterByDate({ name: 'Cũ nhất', type: 'createdAt' })}>Cũ nhất</li>
               </ul>
             </li>
           </ul>

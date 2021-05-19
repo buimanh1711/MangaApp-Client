@@ -14,7 +14,6 @@ export const getAllStoriesAsync = (query, loading) => {
       .then((res) => {
         if (res.data && res.data.status) {
           dispatch(toggleLoading(false))
-          console.log(res.data)
           dispatch(
             getAllStories({
               stories: res.data.stories,

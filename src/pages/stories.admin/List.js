@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
-import { removeStoryAsync, updateStoryAsync } from '../../redux/actions/stories.action'
+import { getAllStoriesAsync, removeStoryAsync, updateStoryAsync } from '../../redux/actions/stories.action'
 
 const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreateForm }) => {
   const { stories, storyPage } = useSelector(state => state.stories)
@@ -18,7 +18,7 @@ const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreate
   }
 
   const changePage = (page) => {
-    // dispatch(getAllGuestsAsync({ page }))
+    dispatch(getAllStoriesAsync({ page }))
   }
 
   return (
@@ -42,7 +42,7 @@ const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreate
             </li>
             {
               stories.map((item, index) => {
-                if (index < 10) return (
+                return (
                   <li key={item._id}>
                     <div className='info'>
                       <span className='name' onClick={() => setClientInfo({ status: true, info: item })}>

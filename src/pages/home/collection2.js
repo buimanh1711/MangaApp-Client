@@ -26,7 +26,8 @@ const Collection2 = () => {
   }, [])
 
   const getHotStories = (stories) => {
-    const sortedStories = stories.sort((a, b) => a.follows.length > b.follows.length)
+    const newStories = [...stories]
+    const sortedStories = newStories.sort((a, b) => b.follows.length - a.follows.length)
     setHot(sortedStories)
   }
 

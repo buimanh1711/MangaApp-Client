@@ -22,9 +22,9 @@ const ChaptersList = ({ storyId }) => {
           <span className='title'><i className="fas fa-th-list"></i> Danh sách chương: </span>
           <ul className='scroll'>
             {
-              chapters.map(item => (
+              chapters.map((item, index) => (
                 <li>
-                  <Link to={`/`}>{item.name}</Link>
+                  <Link target="_blank" to={`/chapters/${item._id}/${index + 1}`}>{item.name}</Link>
                   <span>{date(item.createdAt)}</span>
                 </li>
               ))

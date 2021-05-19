@@ -45,7 +45,6 @@ export const createCategoryAsync = (newCategory, callback) => {
 
     API.createCategory(newCategory)
       .then(res => {
-        console.log(res)
         if (res.data && res.data.status) {
           if (callback) callback()
           dispatch(

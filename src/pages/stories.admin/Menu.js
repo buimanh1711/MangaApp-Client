@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllStoriesAsync } from "../../redux/actions/stories.action";
 // import { getAllGuestsAsync } from "../../redux/actions";
 import toChar from "../../utils/toChar";
 
@@ -9,27 +10,18 @@ const ClientMenu = ({ setCreateForm }) => {
 
   const [query, setQuery] = useState({});
 
-  const filerByCategory = (e) => {
-    const value = e.target.value && JSON.parse(e.target.value);
-    const { start, end } = value;
-    setQuery({ ...query, start, end });
+  // const filerByCategory = (e) => {
+  //   const value = e.target.value && JSON.parse(e.target.value);
+  //   const { start, end } = value;
+  //   setQuery({ ...query, start, end });
 
-    // dispatch(getAllGuestsAsync({ ...query, start, end }));
-  };
-
-  const filterByCmnd = (e) => {
-    const value = e.target.value;
-    setQuery({ ...query, cmnd: value });
-
-    // dispatch(getAllGuestsAsync({ ...query, cmnd: value }));
-  };
+  //   // dispatch(getAllGuestsAsync({ ...query, start, end }));
+  // };
 
   const filterByName = (e) => {
     const value = e.target.value;
-    setQuery({ ...query, search: toChar(value) });
-
-    // dispatch(getAllGuestsAsync({ ...query, search: toChar(value) }));
-  };
+    dispatch(getAllStoriesAsync({search: toChar(value)}))
+  }
 
   return (
     <div id="client-menu">
@@ -57,7 +49,7 @@ const ClientMenu = ({ setCreateForm }) => {
               placeholder="Nhập số cmnd..."
             />
           </li> */}
-          <li className="category">
+          {/* <li className="category">
             <select onChange={filerByCategory}>
               <option
                 value={JSON.stringify({ start: null, end: null })}
@@ -74,7 +66,7 @@ const ClientMenu = ({ setCreateForm }) => {
                 )
               }
             </select>
-          </li>
+          </li> */}
 
         </ul>
       </div>

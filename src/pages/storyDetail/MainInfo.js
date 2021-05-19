@@ -23,7 +23,6 @@ const MainInfo = ({ storyInfo }) => {
     dispatch(toggleLoading(true))
     followStory(storyInfo._id, user._id)
       .then(res => {
-        console.log(res)
         if (res.data && res.data.status) {
           dispatch(toggleLoading(false))
           setIsFollowed(true)

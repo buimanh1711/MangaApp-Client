@@ -11,7 +11,6 @@ const Update = ({ updateForm, setUpdateForm }) => {
 
   const dispatch = useDispatch()
   const { info } = updateForm
-  console.log(info)
   const [description, setDescription] = useState(null)
   const nameEl = useRef(null)
   const yearsEl = useRef(null)

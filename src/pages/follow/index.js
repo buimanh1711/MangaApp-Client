@@ -4,12 +4,19 @@ import { useEffect } from "react"
 import { getAllStoriesAsync } from "../../redux/actions/stories.action"
 import Breadcrumb from "../../global/Breadcrumb"
 import Pagination from "../../global/Pagination"
+import { useHistory } from 'react-router-dom'
 
 const FollowStories = () => {
+  const history = useHistory()
   const { stories, storyPage } = useSelector(state => state.stories)
   const { user } = useSelector(state => state.users)
+  const accessToken = localStorage.getItem('accessToken')
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (!accessToken) return history.push('/login')
+  }, [accessToken])
 
   useEffect(() => {
     dispatch(getAllStoriesAsync({ userFollow: user._id }, true))

@@ -33,6 +33,8 @@ import Categories from './pages/categories'
 import LatestStories from './pages/Latest'
 import DetailStory from './pages/storyDetail'
 import FollowStories from './pages/follow'
+import ReadLayout from './layouts/read'
+import Chapter from './pages/chapters'
 
 function App() {
   const dispatch = useDispatch()
@@ -53,6 +55,11 @@ function App() {
     <div className='my-app'>
       <Loading />
       <Switch>
+      <Route path='/chapters/:_id/:chap'>
+          <ReadLayout>
+            <Chapter />
+          </ReadLayout>
+        </Route>
         <Route path='/search'>
           <MainLayout>
             <Search />

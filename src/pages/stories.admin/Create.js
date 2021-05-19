@@ -40,7 +40,6 @@ const Create = ({ status, setCreateForm }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (currentCategories.length <= 0) return alert('Chưa chọn chuyện mục!')
-    console.log(input1.current.files, input2.current.files)
     const title = titleEl.current.value.trim()
     const shortDescription = shortDescriptionEl.current.value.trim()
     const text = toChar(title)

@@ -69,6 +69,8 @@ const usersReducer = (state = initState, action) => {
         phone,
       } = payload
       localStorage.setItem("accessToken", token)
+      localStorage.setItem("role", role)
+      localStorage.setItem("login", login)
 
       return {
         ...state,

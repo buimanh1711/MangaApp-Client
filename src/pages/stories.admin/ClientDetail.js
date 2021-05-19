@@ -108,7 +108,6 @@ const ClientInfo = ({ clientInfo, setClientInfo, setChapterUpdateForm }) => {
                       </li>
                       {
                         story.chapters.map((item, index) => {
-                          console.log(item)
                           if (item && item.chapter) {
                             return (
                               <li key={item.chapter._id}>

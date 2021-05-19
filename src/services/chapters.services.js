@@ -18,7 +18,11 @@ export const getAllChapters = (query) => {
   var url = `/chapters?page=${page || 1}&sort=${sort || 'createdAt'}&`
   if (story) url = url + `story=${story}&`
   if (search) url = url + `search=${search}&` 
-  console.log(url)
   return request(url, "GET")
+}
+
+
+export const getOneChapter = (_id) => {
+  return request(`/chapters/${_id}`, "GET")
 }
 

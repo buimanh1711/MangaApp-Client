@@ -1,13 +1,16 @@
 import { useRef, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom'
 import { specialCharsValidate } from "../../utils/validate"
 
 const Header = () => {
   const location = useLocation()
+  const history = useHistory()
   const menu = useSelector(state => state.web.menu)
   const login = useSelector(state => state.users.login)
   const user = useSelector(state => state.users.user)
+  const param = useRef(null)
+  const param2 = useRef(null)
 
   const asPath = location.pathname || '/'
 
@@ -18,7 +21,7 @@ const Header = () => {
 
   const checkQuery = (e) => {
     let value = e.target.value.trim()
-    if (value.length > 0 && specialCharsValidate(value)) {
+    if (value.length > 0) {
       setCheck(true)
     } else {
       setCheck(false)
@@ -26,9 +29,16 @@ const Header = () => {
   }
 
   const submitHandle = (e) => {
-    if (e.key === 'Enter' && check) {
-      e.preventDefault()
-      formEl.current.submit()
+    e.preventDefault()
+    if (check) {
+      history.push(`/search?q=${param.current.value}`)
+    }
+  }
+
+  const submitHandle2 = (e) => {
+    e.preventDefault()
+    if (check) {
+      history.push(`/search?q=${param2.current.value}`)
     }
   }
 
@@ -45,10 +55,10 @@ const Header = () => {
               </div>
             </div>
             <div className='search-form'>
-              <form action='/search' onSubmit={submitHandle} ref={formEl}>
+              <form action='/search' ref={formEl}>
                 <div className='search-container'>
-                  <input name='q' onChange={checkQuery} required placeholder='Tìm kiếm truyện...' />
-                  <button>
+                  <input ref={param} name='q' onChange={checkQuery} required placeholder='Tìm kiếm truyện...' />
+                  <button onClick={submitHandle}>
                     <i className="fas fa-search"></i>
                   </button>
                 </div>
@@ -112,8 +122,8 @@ const Header = () => {
               </button>
               <form>
                 <div className='search-mb'>
-                  <input required placeholder='Tìm kiếm truyện' />
-                  <button>
+                  <input onChange={checkQuery} ref={param2} required placeholder='Tìm kiếm truyện' />
+                  <button onClick={submitHandle2}>
                     <i className="fas fa-search"></i>
                   </button>
                 </div>
