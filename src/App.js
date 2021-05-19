@@ -7,6 +7,7 @@ import './static/styles/global.scss'
 import './static/styles/sign.scss'
 import './static/styles/home.scss'
 import './static/styles/stories.scss'
+import './static/styles/storydetail.scss'
 import './static/styles/story.admin.scss'
 import './static/styles/category.admin.scss'
 import './static/styles/template.scss'
@@ -28,6 +29,9 @@ import Admin from './layouts/admin'
 import { getAllCategoriesAsync } from './redux/actions/categories.actions'
 import { getAllStoriesAsync } from './redux/actions/stories.action'
 import Loading from './global/Loading'
+import Categories from './pages/categories'
+import LatestStories from './pages/Latest'
+import DetailStory from './pages/storyDetail'
 
 function App() {
   const dispatch = useDispatch()
@@ -53,9 +57,24 @@ function App() {
             <Search />
           </MainLayout>
         </Route>
+        <Route path='/stories/:_id'>
+          <MainLayout>
+            <DetailStory />
+          </MainLayout>
+        </Route>
         <Route path='/stories'>
           <MainLayout>
             <Stories />
+          </MainLayout>
+        </Route>
+        <Route path='/latest'>
+          <MainLayout>
+            <LatestStories />
+          </MainLayout>
+        </Route>
+        <Route path='/categories'>
+          <MainLayout>
+            <Categories />
           </MainLayout>
         </Route>
         <Route path='/admin'>

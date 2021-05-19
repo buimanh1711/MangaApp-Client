@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import Warning from "./Warning"
 
 const StoriesList = ({ stories }) => {
   return (
@@ -24,6 +25,8 @@ const StoriesList = ({ stories }) => {
                 </div>
               </div>
             ))
+            ||
+            <Warning alert='Không có truyện!' />
           }
         </div>
       </div>

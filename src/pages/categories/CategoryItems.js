@@ -1,0 +1,70 @@
+import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
+import { toggleLoading } from "../../redux/actions/web.actions"
+import { getAllStories } from "../../services/stories.services"
+
+const CategoryItems = ({ category }) => {
+
+  const dispatch = useDispatch()
+
+  const [currentItems, setCurrentItems] = useState([])
+
+  useEffect(() => {
+
+    if (category && category._id) {
+      dispatch(toggleLoading(true))
+
+      getAllStories({ categories: [category._id] }, true)
+        .then(res => {
+          if (res.data && res.data.status) {
+            dispatch(toggleLoading(false))
+            setCurrentItems(res.data.stories)
+          } else {
+            alert(res.data.message)
+          }
+        })
+        .catch(err => alert('Error: ' + err))
+        .then(() => dispatch(toggleLoading(false)))
+    }
+
+  }, [])
+
+  return (
+    <div id='stories-list'>
+      {
+        currentItems && currentItems.length > 0 &&
+        <div className='stories-list-container'>
+          <div className='category-name'>
+            <span>{category.title}</span>
+          </div>
+
+          <div className='row custom-gutter'>
+            {
+              currentItems.map(item => (
+                <div className='col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 custom-gutter'>
+                  <div className='item-container'>
+                    <span className='category'>{item.categories && (item.categories.length > 0 && item.categories[0].category) && item.categories[0].category.title || '...'}</span>
+                    <div className='thumb'>
+                      <Link>
+                        <img src={item.image && item.image.url || '/images/product_default_img.png'} />
+                      </Link>
+                    </div>
+                    <div className='info'>
+                      <Link>{item.title || 'Chưa cập nhật!'}</Link>
+                      <p>
+                        125 Chương
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      }
+    </div>
+  )
+}
+
+export default CategoryItems

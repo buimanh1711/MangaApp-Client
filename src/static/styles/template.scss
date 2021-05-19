@@ -121,7 +121,7 @@
       padding: 0;
       li {
         display: inline-block;
-        border-bottom: 2px solid rgba(255, 255, 255, 0);
+        border-top: 2px solid transparent;
         a {
           padding: 8px 20px;
           display: block;
@@ -129,7 +129,11 @@
         }
       }
       li.active {
-        border-bottom: 2px solid white;
+        background: white;
+        border-top: 2px solid var(--primary-color-2);
+        a {
+          color: var(--primary-color) !important
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 const Warning = ({ alert }) => {
   return (
-    <div className="alert alert-warning" role="alert">
+    <div style={{width: '100%'}} className="alert alert-warning" role="alert">
       {alert || 'Lỗi!'}
     </div>
   )
