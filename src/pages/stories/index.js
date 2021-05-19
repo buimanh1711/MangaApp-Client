@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import Breadcrumb from "../../global/Breadcrumb"
 import StoriesList from "../../global/List"
 import { getAllStoriesAsync } from "../../redux/actions/stories.action"
 import Filter from "./Filter"
@@ -15,6 +16,7 @@ const Stories = () => {
   return (
     <div id='stories'>
       <div className='container'>
+        <Breadcrumb category="Tất cả truyện" />
         <div className='stories-container'>
           <Filter />
           <div style={{marginTop: 32}} className='stories-list-wrapper'>

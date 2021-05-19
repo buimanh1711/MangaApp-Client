@@ -15,10 +15,10 @@ export const deleteChapter = (_id, storyId) => {
 export const getAllChapters = (query) => {
   const { story, sort, page, search } = query
 
-  var url = `/chapters?page=${page || 1}&sort=${sort || 'createdAt'}`
+  var url = `/chapters?page=${page || 1}&sort=${sort || 'createdAt'}&`
   if (story) url = url + `story=${story}&`
   if (search) url = url + `search=${search}&` 
-
-  request(url, "GET")
+  console.log(url)
+  return request(url, "GET")
 }
 

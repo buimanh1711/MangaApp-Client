@@ -4,6 +4,12 @@
 @media (max-width: 1199.98px) {
 }
 @media (max-width: 991.98px) {
+  #detail-story .detail-container .comment-wrapper .comment-input-container {
+    width: 100%;
+  }
+  #detail-story .detail-container .comment-wrapper ul {
+    width: 100%;
+  }
   .collection1 .collection1-container .main-item {
     position: static;
   }
@@ -72,6 +78,23 @@
   }
 }
 @media (max-width: 575.98px) {
+  #detail-story .detail-container .main-info h1 {
+    margin: 16px 0px;
+  }
+  #detail-story .detail-container .chapter-list .title {
+    font-size: 1.4rem;
+  }
+
+  #detail-story .detail-container .chapter-list ul li {
+    font-size: 1rem;
+  }
+  #detail-story .detail-container .comment-wrapper .title {
+    font-size: 1.4rem;
+  }
+  #detail-story .detail-container .comment-wrapper .comment-input-container .comment-input {
+    padding: 6px 12px;
+    padding-right: 40px;
+  }
   #latest {
     margin-top: 100px;
   }

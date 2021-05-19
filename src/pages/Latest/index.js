@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import StoriesList from "../../global/List"
 import { useEffect } from "react"
 import { getAllStoriesAsync } from "../../redux/actions/stories.action"
+import Breadcrumb from "../../global/Breadcrumb"
 
 const LatestStories = () => {
   const { stories } = useSelector(state => state.stories)
@@ -14,6 +15,7 @@ const LatestStories = () => {
   return (
     <div id='latest'>
       <div className="container">
+        <Breadcrumb category="Mới cập nhật" />
         <div className='latest-container'>
           <StoriesList stories={stories} />
 

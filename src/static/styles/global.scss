@@ -1,3 +1,19 @@
+.my-bread {
+  width: 100%;
+  margin: 16px 0px;
+  font-weight: bold;
+  span {
+    color: rgba(0, 0, 0, 0.795);
+    font-style: italic;
+    a {
+      font-style: normal;
+      color: var(--primary-color);
+      i {
+        margin: 0px 12px;
+      }
+    }
+  }
+}
 #loading {
   position: fixed;
   top: 0;
@@ -83,17 +99,17 @@
         padding-right: 50px;
       }
       span::before {
-        content: '';
+        content: "";
         position: absolute;
         border: 8px solid transparent;
         border-bottom-color: rgb(128, 48, 16);
         bottom: -8px;
         left: 4px;
-        transform: rotate(45deg)
+        transform: rotate(45deg);
       }
 
       span::after {
-        content: '';
+        content: "";
         position: absolute;
         border: 22px solid transparent;
         border-right-color: white;

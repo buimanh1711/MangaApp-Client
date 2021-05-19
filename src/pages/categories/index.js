@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import CategoryItems from "./CategoryItems"
+import Breadcrumb from '../../global/Breadcrumb'
 
 const Categories = () => {
 
@@ -8,6 +9,7 @@ const Categories = () => {
   return (
     <div id='categories'>
       <div class='container'>
+        <Breadcrumb category="Thể loại" />
         {
           categories && categories.length > 0 &&
           categories.map(item => (

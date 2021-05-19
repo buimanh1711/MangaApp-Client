@@ -16,8 +16,8 @@ export const getAllChaptersAsync = (query, loading) => {
         if (res.data && res.data.status) {
           dispatch(
             getAllChapters({
-              chapters: res.data.Chapters,
-              ChapterPage: {
+              chapters: res.data.chapters,
+              chapterPage: {
                 totalPage: res.data.totalPage,
                 currentPage: res.data.currentPage,
                 totalChapters: res.data.totalChapters,

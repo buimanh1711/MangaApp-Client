@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from "react"
+import { getAllStoriesAsync } from "../../redux/actions/stories.action'
+import { useDispatch, useSelector } from "react-redux"
 
 const Collection2 = (props) => {
+  const dispatch = useDispatch()
+
   const arr = [
     {},
     {},

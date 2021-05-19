@@ -13,7 +13,7 @@ const initState = {
       path: "/categories",
     },
     {
-      title: "Mới nhất",
+      title: "Mới cập nhật",
       path: "/latest",
     },
     {

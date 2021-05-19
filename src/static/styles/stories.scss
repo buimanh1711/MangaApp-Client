@@ -1,6 +1,7 @@
 #filter .filter-container {
   display: flex;
   align-items: center;
+  margin-top: 16px;
 }
 
 #filter .filter-container ul.filter-list {
@@ -15,7 +16,7 @@
   padding: 5px 20px;
   border: 1px solid transparent;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1rem;
   position: relative;
   margin-right: 8px;
 }
