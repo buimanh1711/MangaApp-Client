@@ -36,7 +36,7 @@ import FollowStories from './pages/follow'
 
 function App() {
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch(authAsync())
   }, [])
