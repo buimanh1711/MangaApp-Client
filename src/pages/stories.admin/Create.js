@@ -12,11 +12,16 @@ const Create = ({ status, setCreateForm }) => {
 
   const [file, setFile] = useState(null)
   const [data, getData] = useState({ name: '', path: '/images/product_default_img.png' })
-
   const [currentCategories, setCurrentCategories] = useState([])
 
+  const input1 = useRef(null)
+  const input2 = useRef(null)
   const titleEl = useRef(null)
   const shortDescriptionEl = useRef(null)
+
+  useEffect(() => {
+    setCurrentCategories([])
+  }, [status])
 
   const handleChange = (e) => {
     const selectedFile = e.target.files[0]
@@ -34,11 +39,12 @@ const Create = ({ status, setCreateForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    if (currentCategories.length <= 0) return alert('Chưa chọn chuyện mục!')
+    console.log(input1.current.files, input2.current.files)
     const title = titleEl.current.value.trim()
     const shortDescription = shortDescriptionEl.current.value.trim()
     const text = toChar(title)
-    console.log(currentCategories)
+    
     const formData = new FormData()
     formData.append('title', title)
     formData.append('shortDescription', shortDescription)
@@ -46,7 +52,9 @@ const Create = ({ status, setCreateForm }) => {
     formData.append('text', text)
     formData.append('image', file)
 
-    dispatch(createStoryAsync(formData, setCreateForm(false)))
+    dispatch(createStoryAsync(formData, () => {
+      setCreateForm(false)
+    }))
   }
 
   const addCate = (category) => {
@@ -67,6 +75,7 @@ const Create = ({ status, setCreateForm }) => {
         status &&
         <div id='client-create'>
           <div className='create-container'>
+            <input type='file' style={{ position: 'fixed', display: 'none' }} ref={input2} />
             <form onSubmit={handleSubmit} className='create-form'>
               <span onClick={() => { setCreateForm(false) }} className='close'>
                 <i className="fas fa-times"></i>
@@ -78,7 +87,7 @@ const Create = ({ status, setCreateForm }) => {
                     <img src={data.path} />
                     <label htmlFor='product_image'>
                       <i className="fas fa-camera"></i>
-                      <input onChange={handleChange} hidden type='file' id='product_image' />
+                      <input ref={input1} onChange={handleChange} hidden type='file' id='product_image' />
                     </label>
                   </div>
                 </div>
@@ -107,9 +116,9 @@ const Create = ({ status, setCreateForm }) => {
                         if (check) {
                           return (
                             <span onClick={() => removeCate(item._id)} class='col-6'>
-                            <i style={{ color: 'green'}} className={"fas fa-check"}></i>
-                            {item.title}
-                          </span>
+                              <i style={{ color: 'green' }} className={"fas fa-check"}></i>
+                              {item.title}
+                            </span>
                           )
                         } else {
                           return (

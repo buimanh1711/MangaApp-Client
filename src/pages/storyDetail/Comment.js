@@ -5,8 +5,7 @@ import Warning from '../../global/Warning'
 import { commentStory } from '../../services/stories.services'
 
 const Comment = ({ storyId, commentList }) => {
-  const { user } = useSelector(state => state.users)
-
+  const { user, login } = useSelector(state => state.users)
   const commentEl = useRef(null)
   const [comments, setComments] = useState([])
   const [loading, setLoading] = useState(false)
@@ -18,6 +17,8 @@ const Comment = ({ storyId, commentList }) => {
   }, [commentList])
 
   const comment = () => {
+    if (!login) return alert('Bạn chưa đăng nhập!')
+    
     const content = commentEl.current.value
     if (!content || content === '') return
 

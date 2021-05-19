@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllStoriesAsync } from '../../redux/actions/stories.action'
 
-const Filter = () => {
+const Filter = ({ setFilters }) => {
   const { categories } = useSelector(state => state.categories)
   const dispatch = useDispatch()
 
@@ -36,6 +36,10 @@ const Filter = () => {
       ...currentFilter,
       currentCategories: newCategories
     })
+    setFilters({
+      ...currentFilter,
+      currentCategories: newCategories
+    })
   }
 
   const removeFilterCategories = (categoryId) => {
@@ -51,6 +55,10 @@ const Filter = () => {
     }, true))
 
     setCurrentFilter({
+      ...currentFilter,
+      currentCategories: newCategories
+    })
+    setFilters({
       ...currentFilter,
       currentCategories: newCategories
     })
@@ -75,6 +83,10 @@ const Filter = () => {
     }, true))
 
     setCurrentFilter({
+      ...currentFilter,
+      date: newDateSort
+    })
+    setFilters({
       ...currentFilter,
       date: newDateSort
     })
@@ -103,12 +115,12 @@ const Filter = () => {
       currentCategories: [],
       date: {}
     })
+    setFilters({
+      currentCategories: [],
+      date: {}
+    })
 
     dispatch(getAllStoriesAsync({}, true))
-  }
-
-  const changePage = (page) => {
-
   }
 
   return (

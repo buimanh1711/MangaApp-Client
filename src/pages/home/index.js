@@ -10,7 +10,7 @@ const Home = () => {
   const dispatch = useDispatch()
   
   useEffect(() => {
-    dispatch(getAllStoriesAsync({ sort: '-updatedAt' }, true))
+    dispatch(getAllStoriesAsync({ sort: '-createdAt' }, true))
   }, [dispatch])
 
   return (

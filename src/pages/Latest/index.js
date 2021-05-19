@@ -9,7 +9,7 @@ const LatestStories = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getAllStoriesAsync({ sort: '-updatedAt' }, true))
+    dispatch(getAllStoriesAsync({ sort: '-updatedChap' }, true))
   }, [dispatch])
 
   return (
@@ -17,8 +17,7 @@ const LatestStories = () => {
       <div className="container">
         <Breadcrumb category="Mới cập nhật" />
         <div className='latest-container'>
-          <StoriesList stories={stories} />
-
+          <StoriesList stories={stories.slice(0, 18)} />
         </div>
       </div>
     </div>

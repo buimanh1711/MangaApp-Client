@@ -26,7 +26,7 @@ const Collection1 = () => {
   return (
     <div className='collection1'>
       {
-        stories && stories.length > 0 &&
+        stories && stories.length >= 5 &&
         <div className='collection1-container'>
           <div className='row'>
             <div className='col-12 col-sm-12 col-md-12 col-lg-3 col-lx-3'>
@@ -55,7 +55,19 @@ const Collection1 = () => {
 
             <div className='col-12 col-sm-12 col-md-12 col-lg-6 col-lx-6' style={{ position: 'relative' }}>
               <div className='main-item'>
-                <span className='category'>{stories[3].categories && (stories[3].categories.length > 0 && stories[3].categories[0].category) && stories[5].categories[0].category.title || '...'}</span>
+                <span className='category'>{stories[2].categories && (stories[2].categories.length > 0 && stories[2].categories[0].category) && stories[4].categories[0].category.title || '...'}</span>
+                <Link to={`/stories/${stories[2]._id}`}>
+                  <div style={{ backgroundImage: `url(${stories[2].image && stories[2].image.url || '/images/product_default_img.png'})` }} className='image-wrapper'>
+                    <div className='title'>
+                      <span>{stories[2].title}</span>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className='col-12 col-sm-12 col-md-12 col-lg-3 col-lx-3'>
+              <div className='extra-item'>
+                <span className='category'>{stories[3].categories && (stories[3].categories.length > 0 && stories[3].categories[0].category) && stories[3].categories[0].category.title || '...'}</span>
                 <Link to={`/stories/${stories[3]._id}`}>
                   <div style={{ backgroundImage: `url(${stories[3].image && stories[3].image.url || '/images/product_default_img.png'})` }} className='image-wrapper'>
                     <div className='title'>
@@ -64,25 +76,13 @@ const Collection1 = () => {
                   </div>
                 </Link>
               </div>
-            </div>
-            <div className='col-12 col-sm-12 col-md-12 col-lg-3 col-lx-3'>
+
               <div className='extra-item'>
-                <span className='category'>{stories[4].categories && (stories[4].categories.length > 0 && stories[4].categories[0].category) && stories[4].categories[0].category.title || '...'}</span>
+                <span className='category'>{stories[4].categories && (stories[4].categories.length > 0 && stories[4].categories[1].category) && stories[4].categories[1].category.title || '...'}</span>
                 <Link to={`/stories/${stories[4]._id}`}>
                   <div style={{ backgroundImage: `url(${stories[4].image && stories[4].image.url || '/images/product_default_img.png'})` }} className='image-wrapper'>
                     <div className='title'>
                       <span>{stories[4].title}</span>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-
-              <div className='extra-item'>
-                <span className='category'>{stories[5].categories && (stories[5].categories.length > 0 && stories[5].categories[1].category) && stories[5].categories[1].category.title || '...'}</span>
-                <Link to={`/stories/${stories[5]._id}`}>
-                  <div style={{ backgroundImage: `url(${stories[5].image && stories[5].image.url || '/images/product_default_img.png'})` }} className='image-wrapper'>
-                    <div className='title'>
-                      <span>{stories[5].title}</span>
                     </div>
                   </div>
                 </Link>

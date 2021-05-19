@@ -11,32 +11,6 @@ const Header = () => {
 
   const asPath = location.pathname || '/'
 
-  const categories = [
-    {
-      title: 'Truyện tranh',
-      path: '/truyen-tranh'
-    },
-    {
-      title: 'Truyện tranh',
-      path: '/truyen-tranh'
-    },
-    {
-      title: 'Truyện tranh',
-      path: '/truyen-tranh'
-    },
-    {
-      title: 'Truyện tranh',
-      path: '/truyen-tranh'
-    },
-    {
-      title: 'Truyện tranh',
-      path: '/truyen-tranh'
-    },
-    {
-      title: 'Truyện tranh',
-      path: '/truyen-tranh'
-    }
-  ]
   const [mbMenu, setMbMenu] = useState(false)
   const [check, setCheck] = useState(false)
 
@@ -88,15 +62,18 @@ const Header = () => {
               </div>
               ||
               <div className='user'>
-                <Link title='Thêm truyện mới' to='/admin/stories' className='add'>
-                  <span></span>
-                  <i className="fas fa-pen-nib"></i>
-                </Link>
+                {
+                  login && user.role === 'admin' &&
+                  <Link title='Thêm truyện mới' to='/admin/stories' className='add'>
+                    <span></span>
+                    <i className="fas fa-pen-nib"></i>
+                  </Link>
+                }
                 <div className='avt-wrapper'>
                   <Link>
                     <img style={{ display: 'inline-block' }} src='/images/user_default_img.png' />
                   </Link>
-                  <Link to='login' className='out'>
+                  <Link to='/login' className='out'>
                     Đăng xuất
                 </Link>
                 </div>
