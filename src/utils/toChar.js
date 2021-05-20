@@ -12,7 +12,7 @@ const toChar = (str) => {
   }
 
   str = str
-    .replace(/[^a-z0-9 -]/g, "") // remove invalid chars
+    // .replace(/[^a-z0-9 -]/g, "") // remove invalid chars
     .replace(/-+/g, " ") // collapse dashes
 
   return str
