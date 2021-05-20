@@ -78,6 +78,14 @@
   }
 }
 @media (max-width: 575.98px) {
+  .sign-in-container {
+    width: 328px;
+    margin: 32px auto;
+    border-radius: 20px;
+    padding: 0;
+    padding-top: 24px;
+    border: none;
+  }
   #detail-story .detail-container .main-info h1 {
     margin: 16px 0px;
   }
