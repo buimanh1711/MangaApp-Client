@@ -42,7 +42,7 @@ const ChapterCreate = ({ chapterCreateForm, setChapterCreateForm }) => {
                 <h4>Thêm Chapter</h4>
                 <div className='create-name'>
                   <label htmlFor='create_name' style={{fontWeight: 'bold'}}>Tên chapter: </label>
-                  <input placeholder='VD: Khoa học máy tính' required ref={nameEl} id='create_name' name='major_name' />
+                  <input placeholder='VD: Chiếc nhẫn tình cờ' required ref={nameEl} id='create_name' name='major_name' />
                 </div>
                 <div className='create-desc'>
                   <Editor setContent={setContent} />

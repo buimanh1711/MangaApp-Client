@@ -29,10 +29,10 @@ const ClientList = ({ setClientInfo, setUpdateForm, setProduct, setChapterCreate
           <ul>
             <li className='title-row'>
               <div className='info'>
-                <span style={{ width: '40%' }}>Tên</span>
-                <span style={{ width: '60%' }}>Số tập</span>
-                <span style={{ width: '60%' }}>Theo dõi</span>
-                <span style={{ width: '60%' }}>Hoàn thành</span>
+                <span style={{ width: '60%' }}>Tên</span>
+                <span style={{ width: '40%' }}>Số tập</span>
+                <span style={{ width: '40%' }}>Theo dõi</span>
+                <span style={{ width: '40%' }}>Hoàn thành</span>
               </div>
               <div className='tools'>
                 <span>Thêm chap</span>

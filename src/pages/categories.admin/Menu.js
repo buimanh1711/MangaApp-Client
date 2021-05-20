@@ -1,15 +1,10 @@
-import { useDispatch, useSelector } from "react-redux"
-// import { getAllProductsAsync } from "../../redux/actions"
-import toChar from "../../utils/toChar"
-
 const ProductMenu = ({ setCreateForm }) => {
-  const dispatch = useDispatch()
   const login = true
 
-  const searchProduct = (e) => {
-    const value = e.target.value
-    // dispatch(getAllProductsAsync({ search: toChar(value) }))
-  }
+  // const searchProduct = (e) => {
+  //   const value = e.target.value
+  //   // dispatch(getAllProductsAsync({ search: toChar(value) }))
+  // }
 
   return (
     <div id='product-menu'>
@@ -26,12 +21,12 @@ const ProductMenu = ({ setCreateForm }) => {
               </button>
             </li>
           }
-          <li className='name'>
+          {/* <li className='name'>
             <input onChange={searchProduct} id='name' placeholder='Tìm kiếm chuyên ngành...' />
             <button className='staff-search'>
               <i className="fas fa-search"></i>
             </button>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

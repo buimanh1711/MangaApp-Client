@@ -58,7 +58,7 @@ const ChapterUpdate = ({ chapterUpdateForm, setChapterUpdateForm, setClientInfo 
                 <h4>Cập nhật Chapter</h4>
                 <div className='create-name'>
                   <label htmlFor='create_name' style={{ fontWeight: 'bold' }}>Tên chapter: </label>
-                  <input defaultValue={info && info.name} placeholder='VD: Khoa học máy tính' required ref={nameEl} id='create_name' name='major_name' />
+                  <input defaultValue={info && info.name} placeholder='VD: Chiếc nhẫn tình cờ' required ref={nameEl} id='create_name' name='major_name' />
                 </div>
                 <div className='create-desc'>
                   <Editor setContent={setContent} defaultContent={info && info.content} />

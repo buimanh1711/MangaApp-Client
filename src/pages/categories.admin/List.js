@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
 import { removeCategoryAsync } from '../../redux/actions/categories.actions'
-import { toggleLoading } from '../../redux/actions/web.actions'
-import { getAllCategories } from '../../services/categories.services'
 
 const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
   const categories = useSelector(state => state.categories.categories)

@@ -35,7 +35,7 @@ const Create = ({ status, setCreateForm }) => {
                 <h4>Thêm chuyên mục</h4>
                 <div className='create-name'>
                   <label htmlFor='create_name'>Tiêu đề: </label>
-                  <input placeholder='VD: Khoa học máy tính' required ref={nameEl} id='create_name' name='major_name' />
+                  <input placeholder='VD: Tiểu thuyết' required ref={nameEl} id='create_name' name='major_name' />
                 </div>
                 <button className='sm-btn' type='submit'>Thêm</button>
               </div>

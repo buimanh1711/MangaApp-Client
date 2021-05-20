@@ -5,6 +5,7 @@ import StoriesList from '../../global/List'
 import { getAllStoriesAsync } from '../../redux/actions/stories.action'
 import Pagination from "../../global/Pagination"
 import toEng from '../../utils/toEng'
+import Breadcrumb from '../../global/Breadcrumb'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -27,17 +28,27 @@ const Search = () => {
   return (
     <div id='search'>
       <div className='container'>
-        <div className='query' style={{marginTop: 32}}>
-          <div class="alert alert-primary" role="alert">
-            {`Kết quả tìm kiếm cho '${param}':`}
+        <Breadcrumb category="Tìm kiếm" />
+        {
+          stories && stories.length > 0 &&
+          <>
+            <div className='query' style={{ marginTop: 32 }}>
+              <div class="alert alert-primary" role="alert">
+                {`Kết quả tìm kiếm cho '${param}':`}
+              </div>
+            </div>
+            <div className='search-container'>
+              <StoriesList stories={stories} />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', margin: '16px' }}>
+              <Pagination totalPage={storyPage.totalPage} currentPage={storyPage.currentPage} changePage={changePage} />
+            </div>
+          </>
+          ||
+          <div style={{margin: '24px 0px'}} className="alert alert-warning" role="alert">
+            {`Không có kết quả nào cho '${param}'!`}
           </div>
-        </div>
-        <div className='search-container'>
-          <StoriesList stories={stories} />
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '16px' }}>
-          <Pagination totalPage={storyPage.totalPage} currentPage={storyPage.currentPage} changePage={changePage} />
-        </div>
+        }
       </div>
     </div>
   )

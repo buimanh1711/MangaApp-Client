@@ -127,11 +127,11 @@ const Register = () => {
                 .then(res => {
                     if (res.data && res.data.status) {
                         dispatch(toggleLoading(false))
-                        dispatch(getUserData({
-                            ...res.data.user,
-                            token: res.data.token,
-                            login: true
-                        }))
+                        // dispatch(getUserData({
+                        //     ...res.data.user,
+                        //     token: res.data.token,
+                        //     login: true
+                        // }))
                         history.replace('/')
                     } else {
                         console.log('Đăng kí thất bại')
