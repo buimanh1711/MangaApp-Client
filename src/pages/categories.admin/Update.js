@@ -1,84 +1,39 @@
-import { useState, useRef, useEffect } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-// import { toggleLoading } from '../../redux/actions'
-// import { updateProduct } from '../../services/global'
-import toChar from '../../utils/toChar'
-import Editor from '../../global/CkEditor'
+import { useRef, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createCategoryAsync } from '../../redux/actions/categories.actions'
 
 const Update = ({ updateForm, setUpdateForm }) => {
-  const history = useHistory()
 
   const dispatch = useDispatch()
   const { info } = updateForm
-  const [description, setDescription] = useState(null)
   const nameEl = useRef(null)
-  const yearsEl = useRef(null)
-  const targetEl = useRef(null)
-  const blockEl = useRef(null)
-  const certEl = useRef(null)
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const name = nameEl.current.value.trim()
-    const years = yearsEl.current.value
-    const text = toChar(name)
-    const target = targetEl.current.value
-    const cert = certEl.current.value
-
     const data = {
-      name, description: description || info.description , years, text, target, cert
+      title: name
     }
+
   }
 
   return (
     <>
       {
         updateForm.status &&
-        <div key={info._id} id='product-create'>
+        <div id='product-create'>
           <div className='create-container'>
-            <form onSubmit={handleSubmit} className='create-form scroll'>
-              <span onClick={() => { setUpdateForm({ status: false, info: {} }) }} className='close'>
+            <form onSubmit={handleSubmit} className='create-form'>
+              <span onClick={() => { setUpdateForm({ status: false, info: {}}) }} className='close'>
                 <i className="fas fa-times"></i>
               </span>
               <div className='form-container'>
-                <h4>Sửa chuyên ngành</h4>
+                <h4>Cập nhật chuyên mục</h4>
                 <div className='create-name'>
-                  <label htmlFor='create_name'>Tên chuyên ngành: </label>
-                  <input defaultValue={info.name} required ref={nameEl} id='create_name' />
-                </div>
-                <div className='create-year'>
-                  <label htmlFor='create_year'>Số năm: </label>
-                  <input required ref={yearsEl} defaultValue={info.years} id='create_year' type='number' min={1} />
-                </div>
-                <div className='create-year'>
-                  <label htmlFor='create_year'>Chỉ tiêu: </label>
-                  <input required ref={targetEl} defaultValue={info.target} id='create_year' type='number' min={1} />
-                </div>
-                <div className='create-year'>
-                  <label htmlFor='create_year'>Khối: </label>
-                  <input required ref={blockEl} defaultValue={info.block} id='create_block' placeholder='VD: A01, D01...' min={1} />
-                </div>
-                <div className='create-cert'>
-                  <select ref={certEl} required defaultValue={info.cert} name="categories">
-                    <option value="Bằng đào tạo" disabled hidden>Bằng đào tạo</option>
-                    <option value={'Cao đẳng'}>
-                      Cao đẳng
-                  </option>
-                    <option value={'Cử nhân'}>
-                      Cử nhân
-                  </option>
-                    <option value='Kĩ sư'>
-                      Kĩ sư
-                  </option>
-                    <option value='Thạc sĩ'>
-                      Thạc sĩ
-                  </option>
-                  </select>
-                </div>
-                <div className='create-desc'>
-                  <Editor setDescription={setDescription} defaultDescription={info.description} />
+                  <label htmlFor='create_name'>Tiêu đề: </label>
+                  <input defaultValue={info.title} placeholder='VD: Tiểu thuyết' required ref={nameEl} id='create_name' name='major_name' />
                 </div>
                 <button className='sm-btn' type='submit'>Thêm</button>
               </div>
