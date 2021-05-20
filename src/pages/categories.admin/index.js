@@ -20,17 +20,13 @@ const Product = () => {
   }, [])
 
   const [createForm, setCreateForm] = useState(false)
-  const [updateForm, setUpdateForm] = useState({ status: false, info: {} })
-  const [productInfo, setProductInfo] = useState({status: false, info: {}})
 
   return (
     <div id='product-tab'>
       <Create status={createForm} setCreateForm={setCreateForm} />
-      <Update updateForm={updateForm} setUpdateForm={setUpdateForm} />
-      <ProductInfo productInfo={productInfo} setProductInfo={setProductInfo} />
       <div className='product-container'>
         <ProductMenu setCreateForm={setCreateForm} />
-        <ProductList setUpdateForm={setUpdateForm} setProductInfo={setProductInfo} />
+        <ProductList />
       </div>
     </div>
   )

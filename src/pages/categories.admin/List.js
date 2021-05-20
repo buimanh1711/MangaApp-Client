@@ -3,7 +3,7 @@ import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
 import { removeCategoryAsync } from '../../redux/actions/categories.actions'
 
-const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
+const ProductList = () => {
   const categories = useSelector(state => state.categories.categories)
   const productPage = {}
   const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
                 <span>Tên</span>
               </div>
               <div className='tools'>
-                <span>Sửa</span>
+                <span hidden>Sửa</span>
                 <span>Xóa</span>
               </div>
             </li>
@@ -42,12 +42,12 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
                       <span>{index + 1}</span>
                     </div>
                     <div className='info'>
-                      <span className='name' onClick={() => setProductInfo({ status: true, info: item })}>
+                      <span className='name'>
                         {item.title}
                       </span>
                     </div>
                     <div className='tools'>
-                      <button className='edit' onClick={() => setUpdateForm({ status: true, info: item })}>
+                      <button hidden className='edit'>
                         <i className="fas fa-edit"></i>
                       </button>
                       <button onClick={() => deleteCategory(item._id)} className='remove'>
