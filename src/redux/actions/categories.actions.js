@@ -63,38 +63,40 @@ export const createCategoryAsync = (newCategory, callback) => {
   }
 }
 
-// export const updateChapter = (payload) => ({
-//   type: "UDPATE_ONE_CHAPTER",
-//   payload
-// })
+export const updateCategory = (payload) => ({
+  type: "UPDATE_ONE_CATEGORY",
+  payload
+})
 
-// export const updateChapterAsync = (_id, newChapter, index) => {
-//   return dispatch => {
-//     dispatch(toggleLoading(true))
+export const updateCategoryAsync = (_id, newCategory, index, callback) => {
+  return dispatch => {
+    dispatch(toggleLoading(true))
 
-//     API.updateChapter(_id, newChapter)
-//       .then((res) => {
-//         if (res.data && res.data.status) {
-//           dispatch(
-//             updateChapter({
-//               chapters: res.data.newChapter,
-//               index
-//             })
-//           )
-//         } else {
-//           alert('ERROR! ' + res.data.message)
-//         }
-//       })
-//       .catch((err) => {
-//         dispatch(
-//           alert('ERROR! ' + err)
-//         )
-//       })
-//       .then(() => {
-//         dispatch(toggleLoading(false))
-//       })
-//   }
-// }
+    API.updateCategory(_id, newCategory)
+      .then((res) => {
+        if (res.data && res.data.status) {
+          if (callback) callback()
+          console.log(res.data)
+          dispatch(
+            updateCategory({
+              category: res.data.newCategory,
+              index
+            })
+          )
+        } else {
+          alert('ERROR! ' + res.data.message)
+        }
+      })
+      .catch((err) => {
+        dispatch(
+          alert('ERROR! ' + err)
+        )
+      })
+      .then(() => {
+        dispatch(toggleLoading(false))
+      })
+  }
+}
 
 export const removeCategoryAsync = (_id) => {
   return (dispatch) => {

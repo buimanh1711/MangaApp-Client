@@ -47,7 +47,7 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
                       </span>
                     </div>
                     <div className='tools'>
-                      <button className='edit' onClick={() => setUpdateForm({ status: true, info: item })}>
+                      <button className='edit' onClick={() => setUpdateForm({ status: true, info: item, index })}>
                         <i className="fas fa-edit"></i>
                       </button>
                       <button onClick={() => deleteCategory(item._id)} className='remove'>

@@ -15,6 +15,10 @@ export const createCategory = (data) => {
   return request('/categories', 'POST', data)
 }
 
+export const updateCategory = (_id, data) => {
+  return request(`/categories/${_id}`, 'PUT', data)
+}
+
 export const removeCategory = (_id) => {
   return request(`/categories/${_id}`, 'DELETE')
 }

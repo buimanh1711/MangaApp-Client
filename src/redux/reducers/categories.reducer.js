@@ -28,10 +28,11 @@ const categoriesReducer = (state = initState, action) => {
 
     case "UPDATE_ONE_CATEGORY": {
       const { categories } = state
-      const { newChapter, index } = payload
+      const { category, index } = payload
+      console.log(category, index)
       let newcategories = [
         ...categories.slice(0, index),
-        newChapter,
+        category,
         ...categories.slice(index + 1)
       ]
 

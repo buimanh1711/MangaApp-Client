@@ -1,11 +1,11 @@
 import { useRef, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createCategoryAsync } from '../../redux/actions/categories.actions'
+import { createCategoryAsync, updateCategoryAsync } from '../../redux/actions/categories.actions'
 
 const Update = ({ updateForm, setUpdateForm }) => {
 
   const dispatch = useDispatch()
-  const { info } = updateForm
+  const { info, index } = updateForm
   const nameEl = useRef(null)
 
 
@@ -17,6 +17,8 @@ const Update = ({ updateForm, setUpdateForm }) => {
       title: name
     }
 
+    dispatch(updateCategoryAsync(info._id, data, index, setUpdateForm({ status: false, info: {}, index: null })))
+
   }
 
   return (
@@ -26,7 +28,7 @@ const Update = ({ updateForm, setUpdateForm }) => {
         <div id='product-create'>
           <div className='create-container'>
             <form onSubmit={handleSubmit} className='create-form'>
-              <span onClick={() => { setUpdateForm({ status: false, info: {}}) }} className='close'>
+              <span onClick={() => { setUpdateForm({ status: false, info: {} }) }} className='close'>
                 <i className="fas fa-times"></i>
               </span>
               <div className='form-container'>
