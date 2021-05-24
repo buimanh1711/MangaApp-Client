@@ -20,11 +20,9 @@ const MainInfo = ({ storyInfo }) => {
   }, [storyInfo, user])
 
   const follow = () => {
-    dispatch(toggleLoading(true))
     followStory(storyInfo._id, user._id)
       .then(res => {
         if (res.data && res.data.status) {
-          dispatch(toggleLoading(false))
           setIsFollowed(true)
         } else {
           alert(res.data.message)
@@ -64,7 +62,7 @@ const MainInfo = ({ storyInfo }) => {
             <p><i className="fas fa-pen-nib"></i> <strong>Cập nhật:</strong> {date(storyInfo.updatedAt)}</p>
             {
               !isFollowed &&
-              <button onClick={follow}><i class="fas fa-heart"></i> Theo dõi</button>
+              <button onClick={follow}><i class="fas fa-heart"></i> Theo dõi ({storyInfo?.follows?.length || 0})</button>
               ||
               <button><i class="fas fa-heart"></i> Đã theo dõi</button>
             }
