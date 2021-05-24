@@ -7,8 +7,9 @@ import { getAllStoriesAsync } from "../../redux/actions/stories.action"
 
 const Home = () => {
   const { stories } = useSelector(state => state.stories)
+  const completed = stories.filter(x => x.isCompleted)
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch(getAllStoriesAsync({ sort: '-createdAt' }, true))
   }, [dispatch])
@@ -19,7 +20,10 @@ const Home = () => {
         <div className='container'>
           <Collection1 />
           <Collection2 />
-          <StoriesList stories={stories} />
+          <div className='comleted-list'>
+            <h4 style={{marginBottom: -12, marginTop: 32, fontWeight: 'bold', color: 'var(--primary-color)'}}>Truyện đã hoàn thành</h4>
+            <StoriesList stories={completed} />
+          </div>
         </div>
       </div>
     </div>
