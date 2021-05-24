@@ -62,9 +62,9 @@ const MainInfo = ({ storyInfo }) => {
             <p><i className="fas fa-pen-nib"></i> <strong>Cập nhật:</strong> {date(storyInfo.updatedChap)}</p>
             {
               !isFollowed &&
-              <button onClick={follow}><i class="fas fa-heart"></i> Theo dõi ({storyInfo?.follows?.length || 0})</button>
+              <button onClick={follow}><i class="fas fa-heart"></i> Theo dõi</button>
               ||
-              <button><i class="fas fa-heart"></i> Đã theo dõi ({storyInfo?.follows?.length || 0})</button>
+              <button><i class="fas fa-heart"></i> Đã theo dõi</button>
             }
             <p className='description'>{storyInfo?.shortDescription}</p>
           </div>
