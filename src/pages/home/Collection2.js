@@ -11,7 +11,7 @@ const Collection2 = () => {
 
   useEffect(() => {
     dispatch(toggleLoading(false))
-    getAllStories({ sort: '-updatedChap' , page: -1}, true)
+    getAllStories({ sort: '-updatedChap', page: -1 }, true)
       .then(res => {
         if (res.data && res.data.status) {
           dispatch(toggleLoading(false))
@@ -36,7 +36,7 @@ const Collection2 = () => {
       <div className='collection2-container'>
         <div className='row'>
           <div className='col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8'>
-            <h4 style={{fontWeight: 'bold', color: 'var(--primary-color)'}}>Truyện mới cập nhật</h4>
+            <h4 style={{ fontWeight: 'bold', color: 'var(--primary-color)' }}>Truyện mới cập nhật</h4>
             {
               updated && updated.length > 0 &&
               <div className='left-container'>
@@ -74,7 +74,7 @@ const Collection2 = () => {
             }
           </div>
           <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4'>
-            <h4 style={{fontWeight: 'bold', color: 'var(--primary-color)'}}>Truyện hot</h4>
+            <h4 style={{ fontWeight: 'bold', color: 'var(--primary-color)' }}>Truyện hot</h4>
             {
               hot && hot.length > 0 &&
               <div className='right-container scroll'>
