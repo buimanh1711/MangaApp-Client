@@ -17,6 +17,7 @@ export const getAllStoriesAsync = (query, loading) => {
           dispatch(
             getAllStories({
               stories: res.data.stories,
+              totalStories: res.data.totalStories,
               storyPage: {
                 totalPage: res.data.totalPage,
                 currentPage: res.data.currentPage,

@@ -23,6 +23,11 @@ const initState = {
   ],
   adminMenu: [
     {
+      title: "Tổng quan",
+      path: "/admin/overall",
+      icon: <i className="fas fa-chart-bar"></i>,
+    },
+    {
       title: "Quản lý truyện",
       path: "/admin/stories",
       icon: <i className="fas fa-book-reader"></i>,

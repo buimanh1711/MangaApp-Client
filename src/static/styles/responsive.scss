@@ -60,6 +60,18 @@
   }
 }
 @media (max-width: 767.98px) {
+  .collection1 .collection1-container .main-item .image-wrapper {
+    aspect-ratio: 1
+  }
+  .collection1 .collection1-container .extra-item .image-wrapper .title, .collection1 .collection1-container .main-item .image-wrapper .title {
+    font-size: 1.4rem;
+  }
+  .collection2 .collection2-container .left-container .item .info a, #stories-list .stories-list-container .item-container .info a {
+    font-size: 1.2rem;
+  }
+  .collection1 .collection1-container .extra-item .image-wrapper {
+    aspect-ratio: 1;
+  }
   #filter {
     display: none;
   }

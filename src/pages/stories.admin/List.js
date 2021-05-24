@@ -87,7 +87,7 @@ const StoriesList = ({ query, setStoryInfo, setUpdateForm, setChapterCreateForm 
             }
           </ul>
           ||
-          <Warning alert='Chưa có khách hàng nào!' />
+          <Warning alert='Chưa có truyện nào!' />
         }
       </div>
       {

@@ -12,6 +12,7 @@ const storiesReducer = (state = initState, action) => {
         ...state,
         stories: payload.stories,
         storyPage: payload.storyPage,
+        totalStories: payload.totalStories,
       }
     }
 
