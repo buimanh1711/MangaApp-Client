@@ -1,4 +1,4 @@
-const ProductInfo = ({ productInfo, setProductInfo }) => {
+const CategoryInfo = ({ productInfo, setProductInfo }) => {
   const { info } = productInfo
 
   return (
@@ -39,4 +39,4 @@ const ProductInfo = ({ productInfo, setProductInfo }) => {
   )
 }
 
-export default ProductInfo
+export default CategoryInfo

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import Warning from "../../global/Warning"
 import { toggleLoading } from "../../redux/actions/web.actions"
 import { getAllStories } from "../../services/stories.services"
 
@@ -32,13 +33,13 @@ const CategoryItems = ({ category }) => {
 
   return (
     <div id='stories-list'>
-      {
-        currentItems && currentItems.length > 0 &&
-        <div className='stories-list-container'>
-          <div className='category-name'>
-            <span>{category.title}</span>
-          </div>
+      <div className='stories-list-container'>
+        <div className='category-name'>
+          <span>{category.title}</span>
+        </div>
 
+        {
+          currentItems && currentItems.length > 0 &&
           <div className='row custom-gutter'>
             {
               currentItems.map(item => (
@@ -53,7 +54,12 @@ const CategoryItems = ({ category }) => {
                     <div className='info'>
                       <Link to={`/stories/${item._id}`}>{item.title || 'Chưa cập nhật!'}</Link>
                       <p>
-                        125 Chương
+                        {
+                          item.chapters && item.chapters.length > 0 &&
+                          `${item.chapters.length} Chương`
+                          ||
+                          'Chưa có chương'
+                        }
                       </p>
                     </div>
                   </div>
@@ -61,8 +67,10 @@ const CategoryItems = ({ category }) => {
               ))
             }
           </div>
-        </div>
-      }
+          ||
+          <Warning alert='Chưa có truyện!' />
+        }
+      </div>
     </div>
   )
 }

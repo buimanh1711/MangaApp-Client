@@ -1,27 +1,26 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllStoriesAsync } from "../../redux/actions/stories.action";
-// import { getAllGuestsAsync } from "../../redux/actions";
 import toChar from "../../utils/toChar";
 
-const ClientMenu = ({ setCreateForm }) => {
+const StoryMenu = ({ setCreateForm, query, setQuery }) => {
   const dispatch = useDispatch();
   const categories = useSelector(state => state.categories.categories)
-
   const queryEl = useRef(null)
-  // const filerByCategory = (e) => {
-  //   const value = e.target.value && JSON.parse(e.target.value);
-  //   const { start, end } = value;
-  //   setQuery({ ...query, start, end });
 
-  //   // dispatch(getAllGuestsAsync({ ...query, start, end }));
-  // };
+  const filerByCategory = (e) => {
+    const category = JSON.parse(e.target.value)
+    console.log(category)
+    setQuery({ ...query});
+
+    dispatch(getAllStoriesAsync({ ...query, categories: category._id}, true));
+  };
 
   const filterByName = (e) => {
-    const query = toChar(queryEl.current.value)
+    const search = toChar(queryEl.current.value)
 
-    if (query.length > 0 && query !== '')
-      dispatch(getAllStoriesAsync({ search: query }))
+    if (search.length > 0 && search !== '')
+      dispatch(getAllStoriesAsync({ search: search }))
   }
 
   const filterAll = () => {
@@ -48,15 +47,7 @@ const ClientMenu = ({ setCreateForm }) => {
             <button onClick={filterByName} style={{padding: '4px 8px', border: 'none'}}>Tìm kiếm</button>
             <button onClick={filterAll} style={{padding: '4px 8px', border: 'none', marginLeft: 12}}>Tất cả</button>
           </li>
-          {/* <li className="id">
-            <label htmlFor="id">CMND</label>
-            <input
-              onChange={filterByCmnd}
-              id="id"
-              placeholder="Nhập số cmnd..."
-            />
-          </li> */}
-          {/* <li className="category">
+          <li className="category">
             <select onChange={filerByCategory}>
               <option
                 value={JSON.stringify({ start: null, end: null })}
@@ -73,7 +64,7 @@ const ClientMenu = ({ setCreateForm }) => {
                 )
               }
             </select>
-          </li> */}
+          </li>
 
         </ul>
       </div>
@@ -81,4 +72,4 @@ const ClientMenu = ({ setCreateForm }) => {
   );
 };
 
-export default ClientMenu;
+export default StoryMenu;

@@ -1,18 +1,37 @@
 import { useRef, useEffect, useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import toChar from '../../utils/toChar'
 import Editor from '../../global/CkEditor'
 import { toggleLoading } from '../../redux/actions/web.actions'
 import { updateChapter } from '../../services/chapters.services'
 import { getAllStoriesAsync } from '../../redux/actions/stories.action'
+import { getOneChapter } from "../../services/chapters.services"
 
-const ChapterUpdate = ({ chapterUpdateForm, setChapterUpdateForm, setClientInfo }) => {
-  const { info } = chapterUpdateForm
+const ChapterUpdate = ({ chapterUpdateForm, setChapterUpdateForm, setStoryInfo }) => {
+  const { chapterId } = chapterUpdateForm
   const dispatch = useDispatch()
 
-  const [content, setContent] = useState(info && info.content)
   const nameEl = useRef(null)
+
+  const [chapter, setChapter] = useState({})
+  const [content, setContent] = useState(chapter && chapter.content || 'Đang cập nhật')
+
+  useEffect(() => {
+    if (chapterId) {
+      dispatch(toggleLoading(true))
+      getOneChapter(chapterId)
+        .then(res => {
+          if (res.data && res.data.status) {
+            setChapter(res.data.chapter)
+            dispatch(toggleLoading(false))
+          } else {
+            alert(res.data.message)
+          }
+        })
+        .catch(err => alert('ERROR: ' + err))
+        .then(() => dispatch(toggleLoading(false)))
+    }
+  }, [chapterId])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,11 +44,11 @@ const ChapterUpdate = ({ chapterUpdateForm, setChapterUpdateForm, setClientInfo 
     }
 
     dispatch(toggleLoading(true))
-    updateChapter(info._id, data)
+    updateChapter(chapterId, data)
       .then(res => {
         if (res.data && res.data.status) {
-          setChapterUpdateForm({ status: false, info: {} })
-          setClientInfo({ status: false, info: {} })
+          setChapterUpdateForm({ status: false, chapterId: null })
+          setStoryInfo({ status: false, info: {} })
           dispatch(getAllStoriesAsync({}, true))
           dispatch(toggleLoading(false))
         } else {
@@ -58,10 +77,10 @@ const ChapterUpdate = ({ chapterUpdateForm, setChapterUpdateForm, setClientInfo 
                 <h4>Cập nhật Chapter</h4>
                 <div className='create-name'>
                   <label htmlFor='create_name' style={{ fontWeight: 'bold' }}>Tên chapter: </label>
-                  <input defaultValue={info && info.name} placeholder='VD: Chiếc nhẫn tình cờ' required ref={nameEl} id='create_name' name='major_name' />
+                  <input defaultValue={chapter && chapter.name} placeholder='VD: Chiếc nhẫn tình cờ' required ref={nameEl} id='create_name' name='major_name' />
                 </div>
                 <div className='create-desc'>
-                  <Editor setContent={setContent} defaultContent={info && info.content} />
+                  <Editor setContent={setContent} defaultContent={chapter && chapter.content} />
                 </div>
                 <button className='sm-btn' type='submit'>Thêm</button>
               </div>

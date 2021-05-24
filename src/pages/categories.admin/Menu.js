@@ -1,4 +1,4 @@
-const ProductMenu = ({ setCreateForm }) => {
+const CategoryMenu = ({ setCreateForm }) => {
   const login = true
 
   // const searchProduct = (e) => {
@@ -33,4 +33,4 @@ const ProductMenu = ({ setCreateForm }) => {
   )
 }
 
-export default ProductMenu
+export default CategoryMenu

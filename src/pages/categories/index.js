@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import CategoryItems from "./CategoryItems"
 import Breadcrumb from '../../global/Breadcrumb'
+import Warning from "../../global/Warning"
 
 const Categories = () => {
 
@@ -17,6 +18,8 @@ const Categories = () => {
               <CategoryItems category={item} />
             </div>
           ))
+          ||
+          <Warning alert='Chưa có chuyên mục!' />
         }
       </div>
     </div>

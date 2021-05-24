@@ -3,9 +3,9 @@ import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
 import { removeCategoryAsync } from '../../redux/actions/categories.actions'
 
-const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
+const CategoriesList = ({ setUpdateForm, setCategoryInfo }) => {
   const categories = useSelector(state => state.categories.categories)
-  const productPage = {}
+  const categoryPage = {}
   const dispatch = useDispatch()
 
   const deleteCategory = (_id) => {
@@ -42,7 +42,7 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
                       <span>{index + 1}</span>
                     </div>
                     <div className='info'>
-                      <span className='name' onClick={() => setProductInfo({ status: true, info: item })}>
+                      <span className='name' onClick={() => setCategoryInfo({ status: true, info: item })}>
                         {item.title}
                       </span>
                     </div>
@@ -64,10 +64,10 @@ const ProductList = ({ setClientInfo, setUpdateForm, setProductInfo }) => {
         }
       </div>
       <div className='client-pagination'>
-        <Pagination totalPage={productPage.totalPage} currentPage={productPage.currentPage} changePage={changePage} />
+        <Pagination totalPage={categoryPage.totalPage} currentPage={categoryPage.currentPage} changePage={changePage} />
       </div>
     </div>
   )
 }
 
-export default ProductList
+export default CategoriesList
