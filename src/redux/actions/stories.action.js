@@ -76,9 +76,10 @@ export const updateStory = ({ newStory, index }) => ({
   payload: { newStory, index }
 })
 
-export const updateStoryAsync = (_id, newStory, index, callback) => {
+export const updateStoryAsync = (_id, newStory, index, callback, loading) => {
   return dispatch => {
-    dispatch(toggleLoading(true))
+    if (!loading)
+      dispatch(toggleLoading(true))
     API.updateStory(_id, newStory, index)
       .then((res) => {
         if (res.data && res.data.status) {

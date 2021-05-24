@@ -38,9 +38,9 @@ const initState = {
       icon: <i className="fas fa-filter"></i>
     },
     {
-      title: "Thông tin",
-      path: "/admin/about",
-      icon: <i className="fas fa-info"></i>,
+      title: "Đi tới trang chủ",
+      path: "/",
+      icon: <i className="fas fa-home"></i>
     },
   ],
   loading: false,

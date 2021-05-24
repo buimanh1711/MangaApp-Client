@@ -13,11 +13,11 @@ const StoriesList = ({ query, setStoryInfo, setUpdateForm, setChapterCreateForm 
   }
 
   const completeStory = (_id, item, index) => {
-    dispatch(updateStoryAsync(_id, { ...item, isCompleted: true }, index))
+    dispatch(updateStoryAsync(_id, { ...item, isCompleted: true }, index, null, true))
   }
 
   const uncompleteStory = (_id, item, index) => {
-    dispatch(updateStoryAsync(_id, { ...item, isCompleted: false }, index))
+    dispatch(updateStoryAsync(_id, { ...item, isCompleted: false }, index, null, true))
   }
 
   const changePage = (page) => {

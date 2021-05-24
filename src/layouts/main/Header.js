@@ -74,7 +74,7 @@ const Header = () => {
               <div className='user'>
                 {
                   login && user.role === 'admin' &&
-                  <Link title='Thêm truyện mới' to='/admin/stories' className='add'>
+                  <Link title='Thêm truyện mới' to='/admin/overall' className='add'>
                     <span></span>
                     <i className="fas fa-pen-nib"></i>
                   </Link>
