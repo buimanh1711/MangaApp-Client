@@ -59,7 +59,7 @@ const MainInfo = ({ storyInfo }) => {
             </ul>
             <p><i className="fas fa-toggle-on"></i> <strong>Trạng thái:</strong> {storyInfo.isCompleted ? 'Đã hoàn thành' : 'Chưa hoàn thành'}</p>
             <p><i className="fas fa-clock"></i> <strong>Ngày tạo:</strong> {date(storyInfo.createdAt)}</p>
-            <p><i className="fas fa-pen-nib"></i> <strong>Cập nhật:</strong> {date(storyInfo.updatedAt)}</p>
+            <p><i className="fas fa-pen-nib"></i> <strong>Cập nhật:</strong> {date(storyInfo.updatedChap)}</p>
             {
               !isFollowed &&
               <button onClick={follow}><i class="fas fa-heart"></i> Theo dõi ({storyInfo?.follows?.length || 0})</button>
