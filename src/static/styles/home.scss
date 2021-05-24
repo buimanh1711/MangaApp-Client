@@ -121,11 +121,15 @@
         }
         .info {
           a {
-            padding: 12px;
-            display: block;
+            padding: 0px 12px;
+            margin: 12px 0px;
             width: 100%;
             text-align: center;
             color: var(--primary-color);
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
           }
           p {
             text-align: center;
