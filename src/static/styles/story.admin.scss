@@ -65,15 +65,16 @@
         li {
           width: 100%;
           display: flex;
-          align-items: center;
           justify-content: space-between;
           padding: 10px 0px;
           padding-left: 8px;
           border-bottom: 1px solid rgb(240, 240, 240);
+          align-items: flex-start;
           .info {
             width: 50%;
             display: flex;
             justify-content: space-between;
+            text-align: center;
             span.name {
               width: 60%;
             }
@@ -112,6 +113,17 @@
               color: rgb(192, 148, 25);
             }
           }
+          .tools.completed {
+            .remove {
+              color: rgb(196, 196, 196);
+            }
+            .edit {
+              color: rgb(196, 196, 196);
+            }
+            .add {
+              color: rgb(196, 196, 196);
+            }
+          }
         }
         li:hover {
           background: rgb(235, 235, 235);
@@ -123,6 +135,7 @@
           }
         }
         .title-row {
+          align-items: center;
           background: rgb(235, 235, 235);
           justify-content: space-between;
           font-weight: bold;
@@ -417,10 +430,12 @@
                 font-size: .9rem;
                 border-bottom: 1px solid rgb(207, 204, 204);
                 span {
-                  text-align: center;
                   padding: 2px 4px;
                   width: 30%;
                   border-left: 1px solid rgb(207, 204, 204);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
                 }
                 span.count {
                   width: 10%;

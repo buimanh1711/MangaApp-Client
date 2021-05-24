@@ -29,7 +29,6 @@ const categoriesReducer = (state = initState, action) => {
     case "UPDATE_ONE_CATEGORY": {
       const { categories } = state
       const { category, index } = payload
-      console.log(category, index)
       let newcategories = [
         ...categories.slice(0, index),
         category,

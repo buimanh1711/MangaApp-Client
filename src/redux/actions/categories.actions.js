@@ -76,7 +76,6 @@ export const updateCategoryAsync = (_id, newCategory, index, callback) => {
       .then((res) => {
         if (res.data && res.data.status) {
           if (callback) callback()
-          console.log(res.data)
           dispatch(
             updateCategory({
               category: res.data.newCategory,

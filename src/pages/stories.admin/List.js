@@ -3,7 +3,7 @@ import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
 import { getAllStoriesAsync, removeStoryAsync, updateStoryAsync } from '../../redux/actions/stories.action'
 
-const StoriesList = ({ setStoryInfo, setUpdateForm, setChapterCreateForm }) => {
+const StoriesList = ({ query, setStoryInfo, setUpdateForm, setChapterCreateForm }) => {
   const { stories, storyPage } = useSelector(state => state.stories)
 
   const dispatch = useDispatch()
@@ -16,8 +16,12 @@ const StoriesList = ({ setStoryInfo, setUpdateForm, setChapterCreateForm }) => {
     dispatch(updateStoryAsync(_id, { ...item, isCompleted: true }, index))
   }
 
+  const uncompleteStory = (_id, item, index) => {
+    dispatch(updateStoryAsync(_id, { ...item, isCompleted: false }, index))
+  }
+
   const changePage = (page) => {
-    dispatch(getAllStoriesAsync({ page }))
+    dispatch(getAllStoriesAsync({ ...query, page }))
   }
 
   return (
@@ -28,10 +32,10 @@ const StoriesList = ({ setStoryInfo, setUpdateForm, setChapterCreateForm }) => {
           <ul>
             <li className='title-row'>
               <div className='info'>
-                <span style={{ width: '60%' }}>Tên</span>
-                <span style={{ width: '40%' }}>Số tập</span>
-                <span style={{ width: '40%' }}>Theo dõi</span>
-                <span style={{ width: '40%' }}>Hoàn thành</span>
+                <span style={{ width: '60%', textAlign: 'center' }}>Tên</span>
+                <span style={{ width: '40%', textAlign: 'center' }}>Số tập</span>
+                <span style={{ width: '40%', textAlign: 'center' }}>Theo dõi</span>
+                <span style={{ width: '40%', textAlign: 'center' }}>Hoàn thành</span>
               </div>
               <div className='tools'>
                 <span>Thêm chap</span>
@@ -49,19 +53,34 @@ const StoriesList = ({ setStoryInfo, setUpdateForm, setChapterCreateForm }) => {
                       </span>
                       <span className='school'><strong style={{ color: 'red' }}>{item.chapters && item.chapters.length || 0}</strong></span>
                       <span className='school'><strong style={{ color: 'red' }}>{item.follows && item.follows.length || 0}</strong></span>
-                      <span className='school'>{!item.isCompleted && <i onClick={() => completeStory(item._id, item, index)} className="fas fa-check-circle"></i> || <i className="far fa-check-circle"></i>}</span>
+                      <span className='school' style={{cursor: 'pointer'}}>{!item.isCompleted && <i onClick={() => completeStory(item._id, item, index)} style={{color: 'rgb(86, 163, 71)', fontSize: '1.2rem'}} className="fas fa-toggle-off"></i> || <i onClick={() => uncompleteStory(item._id, item, index)} style={{color: 'rgb(86, 163, 71)', fontSize: '1.2rem'}} className="fas fa-toggle-on"></i>}</span>
                     </div>
-                    <div className='tools'>
-                      <button className='edit' onClick={() => setChapterCreateForm({ status: true, info: item })}>
-                        <i className="fas fa-pen-nib"></i>
-                      </button>
-                      <button className='edit' onClick={() => setUpdateForm({ status: true, info: item, index: index })}>
-                        <i className="fas fa-edit"></i>
-                      </button>
-                      <button onClick={() => deleteStory(item._id)} className='remove'>
-                        <i className="fas fa-trash-alt"></i>
-                      </button>
-                    </div>
+                    {
+                      !item.isCompleted &&
+                      <div className='tools'>
+                        <button className='edit' onClick={() => setChapterCreateForm({ status: true, info: item })}>
+                          <i className="fas fa-pen-nib"></i>
+                        </button>
+                        <button className='edit' onClick={() => setUpdateForm({ status: true, info: item, index: index })}>
+                          <i className="fas fa-edit"></i>
+                        </button>
+                        <button onClick={() => deleteStory(item._id)} className='remove'>
+                          <i className="fas fa-trash-alt"></i>
+                        </button>
+                      </div>
+                      ||
+                      <div className='tools completed'>
+                        <button className='edit'>
+                          <i className="fas fa-pen-nib"></i>
+                        </button>
+                        <button className='edit'>
+                          <i className="fas fa-edit"></i>
+                        </button>
+                        <button className='remove'>
+                          <i className="fas fa-trash-alt"></i>
+                        </button>
+                      </div>
+                    }
                   </li>
                 )
               })

@@ -1,11 +1,6 @@
 const CategoryMenu = ({ setCreateForm }) => {
   const login = true
 
-  // const searchProduct = (e) => {
-  //   const value = e.target.value
-  //   // dispatch(getAllProductsAsync({ search: toChar(value) }))
-  // }
-
   return (
     <div id='product-menu'>
       <div className='product-menu-container'>

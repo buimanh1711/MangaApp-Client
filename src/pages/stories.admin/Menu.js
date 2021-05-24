@@ -7,13 +7,16 @@ const StoryMenu = ({ setCreateForm, query, setQuery }) => {
   const dispatch = useDispatch();
   const categories = useSelector(state => state.categories.categories)
   const queryEl = useRef(null)
+  const categoryEl = useRef(null)
 
   const filerByCategory = (e) => {
     const category = JSON.parse(e.target.value)
-    console.log(category)
-    setQuery({ ...query});
+    if (!(category && category._id)) {
+      return dispatch(getAllStoriesAsync({ ...query, categories: null }, true));
+    }
+    setQuery({ ...query });
 
-    dispatch(getAllStoriesAsync({ ...query, categories: category._id}, true));
+    dispatch(getAllStoriesAsync({ ...query, categories: category._id }, true));
   };
 
   const filterByName = (e) => {
@@ -24,7 +27,8 @@ const StoryMenu = ({ setCreateForm, query, setQuery }) => {
   }
 
   const filterAll = () => {
-    dispatch(getAllStoriesAsync({}))
+    categoryEl.current.value = 'null'
+    dispatch(getAllStoriesAsync({}, true))
   }
 
   return (
@@ -38,19 +42,18 @@ const StoryMenu = ({ setCreateForm, query, setQuery }) => {
             </button>
           </li>
           <li className="name">
-            <label htmlFor="name">Tên</label>
+            <button onClick={filterAll} style={{ padding: '4px 8px', border: 'none', borderRadius: 4, marginRight: 12, background: 'var(--primary-color)', color: 'white' }}>Tất cả</button>
             <input
               id="name"
               ref={queryEl}
               placeholder="Nhập tên truyện..."
             />
-            <button onClick={filterByName} style={{padding: '4px 8px', border: 'none'}}>Tìm kiếm</button>
-            <button onClick={filterAll} style={{padding: '4px 8px', border: 'none', marginLeft: 12}}>Tất cả</button>
+            <button onClick={filterByName} style={{ padding: '4px 8px', border: 'none' }}>Tìm kiếm</button>
           </li>
           <li className="category">
-            <select onChange={filerByCategory}>
+            <select ref={categoryEl} onChange={filerByCategory}>
               <option
-                value={JSON.stringify({ start: null, end: null })}
+                value={JSON.stringify(null)}
                 selected
               >
                 Tất cả

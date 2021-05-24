@@ -1,15 +1,15 @@
-const CategoryInfo = ({ productInfo, setProductInfo }) => {
-  const { info } = productInfo
+const CategoryInfo = ({ categoryInfo, setCategoryInfo }) => {
+  const { info } = categoryInfo
 
   return (
     <>
       {
-        productInfo.status &&
+        categoryInfo.status &&
         <div id='product-info'>
           <div className='product-info-container'>
             <div className='form'>
               <h4>Thông tin chuyên ngành</h4>
-              <button onClick={() => setProductInfo({ status: false, info: {} })}>
+              <button onClick={() => setCategoryInfo({ status: false, info: {} })}>
                 <i className="fas fa-times"></i>
               </button>
               <div className='content'>

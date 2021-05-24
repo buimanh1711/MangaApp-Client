@@ -25,12 +25,12 @@ const initState = {
     {
       title: "Quản lý truyện",
       path: "/admin/stories",
-      icon: <i className="fas fa-graduation-cap"></i>,
+      icon: <i className="fas fa-book-reader"></i>,
     },
     {
       title: "Quản lý chuyên mục",
       path: "/admin/categories",
-      icon: <i className="fas fa-user-md"></i>
+      icon: <i className="fas fa-filter"></i>
     },
     {
       title: "Thông tin",
@@ -57,6 +57,13 @@ const webReducer = (state = initState, action) => {
       return {
         ...state,
         login: payload
+      }
+    }
+
+    case "SET_ADMIN_TITLE": {
+      return {
+        ...state,
+        adminTitle: payload
       }
     }
   }

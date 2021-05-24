@@ -22,8 +22,8 @@ const Story = () => {
 
   useEffect(() => {
     dispatch({
-      type: 'SET_TITLE',
-      payload: 'Tuyển sinh'
+      type: 'SET_ADMIN_TITLE',
+      payload: 'Truyện'
     })
 
     dispatch(getAllStoriesAsync({}, true))
@@ -39,7 +39,7 @@ const Story = () => {
       <StoryDetail storyInfo={storyInfo} setStoryInfo={setStoryInfo} setChapterUpdateForm={setChapterUpdateForm} />
       <div className='client-container'>
         <StoryMenu query={query} setQuery={setQuery} setCreateForm={setCreateForm} />
-        <StoriesList setChapterCreateForm={setChapterCreateForm} setProduct={setProduct} setStoryInfo={setStoryInfo} setUpdateForm={setUpdateForm} />
+        <StoriesList query={query} setChapterCreateForm={setChapterCreateForm} setProduct={setProduct} setStoryInfo={setStoryInfo} setUpdateForm={setUpdateForm} />
       </div>
     </div>
   )

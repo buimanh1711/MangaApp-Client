@@ -11,8 +11,8 @@ const Category = () => {
 
   useEffect(() => {
     dispatch({
-      type: 'SET_TITLE',
-      payload: 'Chuyên ngành'
+      type: 'SET_ADMIN_TITLE',
+      payload: 'Chuyên mục'
     })
     
     // dispatch(getAllProductsAsync({}, true))
