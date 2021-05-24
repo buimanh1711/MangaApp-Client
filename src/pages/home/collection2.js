@@ -11,7 +11,7 @@ const Collection2 = () => {
 
   useEffect(() => {
     dispatch(toggleLoading(false))
-    getAllStories({ sort: '-updatedChap' }, true)
+    getAllStories({ sort: '-updatedChap' , page: -1}, true)
       .then(res => {
         if (res.data && res.data.status) {
           dispatch(toggleLoading(false))
