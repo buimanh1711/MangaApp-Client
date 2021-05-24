@@ -64,7 +64,7 @@ const MainInfo = ({ storyInfo }) => {
               !isFollowed &&
               <button onClick={follow}><i class="fas fa-heart"></i> Theo dõi ({storyInfo?.follows?.length || 0})</button>
               ||
-              <button><i class="fas fa-heart"></i> Đã theo dõi</button>
+              <button><i class="fas fa-heart"></i> Đã theo dõi ({storyInfo?.follows?.length || 0})</button>
             }
             <p className='description'>{storyInfo?.shortDescription}</p>
           </div>
