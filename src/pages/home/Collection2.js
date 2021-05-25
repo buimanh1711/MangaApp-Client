@@ -16,7 +16,6 @@ const Collection2 = () => {
         if (res.data && res.data.status) {
           dispatch(toggleLoading(false))
           setupdated(res.data.stories)
-          getHotStories(res.data.stories)
         } else {
           alert(res.data.message)
         }
@@ -25,11 +24,20 @@ const Collection2 = () => {
       .then(() => dispatch(toggleLoading(false)))
   }, [])
 
-  const getHotStories = (stories) => {
-    const newStories = [...stories]
-    const sortedStories = newStories.sort((a, b) => b.follows.length - a.follows.length)
-    setHot(sortedStories)
-  }
+  useEffect(() => {
+    dispatch(toggleLoading(false))
+    getAllStories({ sort: '-follows', page: -1 }, true)
+      .then(res => {
+        if (res.data && res.data.status) {
+          dispatch(toggleLoading(false))
+          setHot(res.data.stories)
+        } else {
+          alert(res.data.message)
+        }
+      })
+      .catch(err => alert('ERROR: ' + err))
+      .then(() => dispatch(toggleLoading(false)))
+  }, [])
 
   return (
     <div className='collection2'>

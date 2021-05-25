@@ -142,8 +142,9 @@ const Filter = ({ setFilters }) => {
                 </ul>
               }
             </li>
-            <li className={currentFilter.date.type && 'filter-item active' || 'filter-item'}>Ngày tạo
+            <li className={currentFilter.date.type && 'filter-item active' || 'filter-item'}>Sắp xếp
               <ul className='filter-menu'>
+                <li onClick={() => filterByDate({ name: 'Hot', type: '-follows' })}>Hot</li>
                 <li onClick={() => filterByDate({ name: 'Mới nhất', type: '-createdAt' })}>Mới nhất</li>
                 <li onClick={() => filterByDate({ name: 'Cũ nhất', type: 'createdAt' })}>Cũ nhất</li>
               </ul>

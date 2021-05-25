@@ -143,12 +143,12 @@ const Header = () => {
                 login &&
                 <div className='user'>
                   <Link>{user.fullName}</Link>
-                  <Link>Đăng xuất</Link>
+                  <Link to='/login'>Đăng xuất</Link>
                 </div>
                 ||
                 <div className='sign'>
-                  <Link>Đăng nhập</Link>
-                  <Link>Đăng ký</Link>
+                  <Link to='/login'>Đăng nhập</Link>
+                  <Link to='/register'>Đăng ký</Link>
                 </div>
               }
             </div>
@@ -164,7 +164,7 @@ const Header = () => {
               </div>
             </div>
             <div className='bars-btn'>
-              <Link title='Thêm truyện mới' className='add'>
+              <Link to='/admin/overall' title='Quản lý' className='add'>
                 <span></span>
                 <i className="fas fa-pen-nib"></i>
               </Link>
