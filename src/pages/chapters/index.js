@@ -9,12 +9,12 @@ import { getAllChaptersAsync } from "../../redux/actions/chapters.actions"
 const Chapter = () => {
   const { _id, chap, storyId } = useParams()
   const { chapters } = useSelector(state => state.chapters)
-  const [next, setNext] = useState({})
-  const [prev, setPrev] = useState({})
-  
+  const currentIndex = chapters.findIndex(x => x._id === _id)
+  const prev = currentIndex > 0 ? chapters[currentIndex - 1] : null
+  const next = currentIndex < (chapters.length - 1) ? chapters[currentIndex + 1] : null
+
   const dispatch = useDispatch()
   const [chapter, setChapter] = useState({})
-  const [currentIndex, setCurrentIndex] = useState(null)
 
   useEffect(() => {
     dispatch(toggleLoading(true))
@@ -35,26 +35,16 @@ const Chapter = () => {
     dispatch(getAllChaptersAsync({ story: storyId }, true))
   }, [dispatch, storyId])
 
-  useEffect(() => {
-    const tempIndex = chapters.findIndex(x => x._id === _id)
-    setCurrentIndex(tempIndex)
-    const tempPrev = tempIndex > 0 ? chapters[tempIndex - 1] : null
-    const tempNext = tempIndex < (chapters.length - 1) ? chapters[tempIndex + 1] : null
-    setPrev(tempPrev)
-    setNext(tempNext)
-
-  }, [chapters])
-
   return (
     <div className='chapter-detail'>
       <div className='container'>
         {
           prev &&
-          <Link to={`/chapters/${storyId}/${prev && prev._id}/${currentIndex - 1}`}>Previous</Link>
+          <Link className='prev-btn' to={`/chapters/${storyId}/${prev && prev._id}/${currentIndex}`}>Previous</Link>
         }
         {
           next &&
-          <Link to={`/chapters/${storyId}/${next && next._id}/${currentIndex + 1}`}>Next</Link>
+          <Link className='next-btn' to={`/chapters/${storyId}/${next && next._id}/${currentIndex + 2}`}>Next</Link>
         }
         <h1 className='story'>{chapter.story && chapter.story.title}</h1>
         <h2 className='chap'>Chương {chap}: {chapter.name}</h2>
