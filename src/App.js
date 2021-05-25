@@ -56,7 +56,7 @@ function App() {
     <div className='my-app'>
       <Loading />
       <Switch>
-      <Route path='/chapters/:_id/:chap'>
+      <Route path='/chapters/:storyId/:_id/:chap'>
           <ReadLayout>
             <Chapter />
           </ReadLayout>

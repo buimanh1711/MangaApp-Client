@@ -10,7 +10,6 @@ const ChaptersList = ({ storyId }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-
     dispatch(getAllChaptersAsync({ story: storyId }, true))
   }, [dispatch, storyId])
 
@@ -24,7 +23,7 @@ const ChaptersList = ({ storyId }) => {
             {
               chapters.map((item, index) => (
                 <li>
-                  <Link target="_blank" to={`/chapters/${item._id}/${index + 1}`}>Chương {index + 1}: {item.name}</Link>
+                  <Link target="_blank" to={`/chapters/${storyId}/${item._id}/${index + 1}`}>Chương {index + 1}: {item.name}</Link>
                   <span>{date(item.createdAt)}</span>
                 </li>
               ))
