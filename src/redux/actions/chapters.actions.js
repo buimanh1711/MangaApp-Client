@@ -29,9 +29,7 @@ export const getAllChaptersAsync = (query, loading) => {
         }
       })
       .catch((err) => {
-        dispatch(
           alert('ERROR! ' + err)
-        )
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -61,9 +59,7 @@ export const createChapterAsync = (newChapter, callback) => {
         }
       })
       .catch((err) => {
-        dispatch(
           alert('ERROR! ' + err)
-        )
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -94,9 +90,7 @@ export const updateChapterAsync = (_id, newChapter, index) => {
         }
       })
       .catch((err) => {
-        dispatch(
           alert('ERROR! ' + err)
-        )
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -115,9 +109,7 @@ export const removeChapterAsync = (_id) => {
         }
       })
       .catch((err) => {
-        dispatch(
           alert('ERROR! ' + err)
-        )
       })
       .then(() => {
         dispatch(toggleLoading(false))

@@ -36,9 +36,7 @@ export const getAllUsersAsync = (query, loading) => {
         }
       })
       .catch((err) => {
-        dispatch(
-          alert('ERROR! ' + err)
-        )
+        alert('ERROR! ' + err)
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -54,7 +52,7 @@ export const createUser = (payload) => ({
 export const createUserAsync = (newUser) => {
   return dispatch => {
     dispatch(toggleLoading(true))
-    
+
     API.createUser(newUser)
       .then(res => {
         if (res.data && res.data.status) {
@@ -66,9 +64,7 @@ export const createUserAsync = (newUser) => {
         }
       })
       .catch((err) => {
-        dispatch(
           alert('ERROR! ' + err)
-        )
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -99,9 +95,7 @@ export const updateUserAsync = (_id, newUser, index) => {
         }
       })
       .catch((err) => {
-        dispatch(
-          alert('ERROR! ' + err)
-        )
+        alert('ERROR! ' + err)
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -120,9 +114,7 @@ export const removeUserAsync = (_id) => {
         }
       })
       .catch((err) => {
-        dispatch(
-          alert('ERROR! ' + err)
-        )
+        alert('ERROR! ' + err)
       })
       .then(() => {
         dispatch(toggleLoading(false))

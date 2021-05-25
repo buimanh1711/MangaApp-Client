@@ -87,9 +87,7 @@ export const updateCategoryAsync = (_id, newCategory, index, callback) => {
         }
       })
       .catch((err) => {
-        dispatch(
           alert('ERROR! ' + err)
-        )
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -109,9 +107,7 @@ export const removeCategoryAsync = (_id) => {
         }
       })
       .catch((err) => {
-        dispatch(
           alert('ERROR! ' + err)
-        )
       })
       .then(() => {
         dispatch(toggleLoading(false))

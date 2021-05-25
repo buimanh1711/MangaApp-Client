@@ -61,9 +61,7 @@ export const createStoryAsync = (newStory, callback) => {
         }
       })
       .catch((err) => {
-        dispatch(
           alert('ERROR! ' + err)
-        )
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -94,9 +92,7 @@ export const updateStoryAsync = (_id, newStory, index, callback, loading) => {
         }
       })
       .catch((err) => {
-        dispatch(
-          alert('ERROR! ' + err)
-        )
+        alert('ERROR! ' + err)
       })
       .then(() => {
         dispatch(toggleLoading(false))
@@ -116,9 +112,7 @@ export const removeStoryAsync = (_id) => {
         }
       })
       .catch((err) => {
-        dispatch(
           alert('ERROR! ' + err)
-        )
       })
       .then(() => {
         dispatch(toggleLoading(false))
