@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import TextareaAutosize from 'react-textarea-autosize'
 import Warning from '../../global/Warning'
-import { commentStory } from '../../services/stories.services'
+import { commentStory, removeCommentStory } from '../../services/stories.services'
+import { date } from '../../utils/getDate'
 
 const Comment = ({ storyId, commentList }) => {
   const { user, login } = useSelector(state => state.users)
@@ -18,7 +19,7 @@ const Comment = ({ storyId, commentList }) => {
 
   const comment = () => {
     if (!login) return alert('Bạn chưa đăng nhập!')
-    
+
     const content = commentEl.current.value
     if (!content || content === '') return
 
@@ -28,6 +29,7 @@ const Comment = ({ storyId, commentList }) => {
         if (res.data && res.data.status) {
           setLoading(false)
           const newComment = {
+            _id: res.data.newCommentId,
             content: content,
             author: user
           }
@@ -35,6 +37,26 @@ const Comment = ({ storyId, commentList }) => {
           setComments([
             newComment,
             ...comments
+          ])
+        } else {
+          alert(res.data.message)
+        }
+      })
+      .catch(err => alert('ERROR: ' + err))
+      .then(() => {
+        setLoading(false)
+      })
+  }
+
+  const removeComment = (commentId, authorId) => {
+    if (!login) return alert('Bạn chưa đăng nhập!')
+
+    removeCommentStory(storyId, authorId, commentId)
+      .then(res => {
+        if (res.data && res.data.status) {
+          let temp = comments.filter(x => x._id !== commentId)
+          setComments([
+            ...temp
           ])
         } else {
           alert(res.data.message)
@@ -66,7 +88,14 @@ const Comment = ({ storyId, commentList }) => {
             comments.map(item => (
               <li>
                 <div className='comment-detail'>
+                  {
+                    login && ((item.author && item.author._id) === user._id || user.role === 'admin') && 
+                    <button onClick={() => removeComment(item._id, (item.author && item.author._id || null))} className='remove-btn'>
+                      <i className="far fa-trash-alt"></i>
+                    </button>
+                  }
                   <strong>{item.author && item.author.fullName || '...'}</strong>
+                  <i style={{display: 'block', fontSize: '.8rem', marginBottom: 12, marginLeft: 4}}>{date(item.createdAt)}</i>
                   <p>{item.content}</p>
                 </div>
               </li>

@@ -161,9 +161,15 @@
         }
         li {
           list-style: none;
+          position: relative;
+          button.remove-btn {
+            position: absolute;
+            right: 0;
+            color: rgb(241, 74, 74);
+            background: none;
+          }
           strong {
             color: rgb(82, 82, 245);
-            margin-bottom: 8px;
             display: block;
             margin-left: 4px;
           }
