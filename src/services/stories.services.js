@@ -31,6 +31,10 @@ export const commentStory = (_id, authorId, content ) => {
   return request(`/stories/${_id}/comment`, 'PUT', { authorId, content } )
 }
 
+export const unFollowStory = (_id, authorId ) => {
+  return request(`/stories/${_id}/${authorId}/follow/remove`, 'DELETE')
+}
+
 export const followStory = (_id, authorId ) => {
   return request(`/stories/${_id}/follow`, 'PUT', { authorId } )
 }

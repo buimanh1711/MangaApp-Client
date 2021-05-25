@@ -1,7 +1,7 @@
 import { createElement, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleLoading } from "../../redux/actions/web.actions"
-import { followStory } from "../../services/stories.services"
+import { followStory, unFollowStory } from "../../services/stories.services"
 import { date } from "../../utils/getDate"
 
 const MainInfo = ({ storyInfo }) => {
@@ -26,6 +26,20 @@ const MainInfo = ({ storyInfo }) => {
         if (res.data && res.data.status) {
           setFollows(follows + 1)
           setIsFollowed(true)
+        } else {
+          alert(res.data.message)
+        }
+      })
+      .catch(err => alert('ERROR: ' + err))
+      .then(() => dispatch(toggleLoading(false)))
+  }
+
+  const unfollow = () => {
+    unFollowStory(storyInfo._id, user._id)
+      .then(res => {
+        if (res.data && res.data.status) {
+          setFollows(follows - 1)
+          setIsFollowed(false)
         } else {
           alert(res.data.message)
         }
@@ -66,7 +80,7 @@ const MainInfo = ({ storyInfo }) => {
               !isFollowed &&
               <button onClick={follow}><i class="fas fa-heart"></i> Theo dõi ({follows})</button>
               ||
-              <button><i class="fas fa-heart"></i> Đã theo dõi ({follows})</button>
+              <button onClick={unfollow}><i class="fas fa-heart"></i> Bỏ theo dõi ({follows})</button>
             }
             <p className='description'>{storyInfo?.shortDescription}</p>
           </div>
