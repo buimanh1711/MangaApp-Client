@@ -7,12 +7,13 @@ import { date } from "../../utils/getDate"
 const MainInfo = ({ storyInfo }) => {
   const { user } = useSelector(state => state.users)
   const [isFollowed, setIsFollowed] = useState(false)
+  const [follows, setFollows] = useState(0)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (storyInfo && storyInfo.follows && user && user._id) {
       let check = storyInfo.follows.findIndex(x => x.author._id === user._id)
-
+      setFollows(storyInfo.follows.length)
       if (check !== -1) {
         setIsFollowed(true)
       }
@@ -23,6 +24,7 @@ const MainInfo = ({ storyInfo }) => {
     followStory(storyInfo._id, user._id)
       .then(res => {
         if (res.data && res.data.status) {
+          setFollows(follows + 1)
           setIsFollowed(true)
         } else {
           alert(res.data.message)
@@ -62,9 +64,9 @@ const MainInfo = ({ storyInfo }) => {
             <p><i className="fas fa-pen-nib"></i> <strong>Cập nhật:</strong> {date(storyInfo.updatedChap)}</p>
             {
               !isFollowed &&
-              <button onClick={follow}><i class="fas fa-heart"></i> Theo dõi</button>
+              <button onClick={follow}><i class="fas fa-heart"></i> Theo dõi ({follows})</button>
               ||
-              <button><i class="fas fa-heart"></i> Đã theo dõi</button>
+              <button><i class="fas fa-heart"></i> Đã theo dõi ({follows})</button>
             }
             <p className='description'>{storyInfo?.shortDescription}</p>
           </div>
