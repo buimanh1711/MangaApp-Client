@@ -7,7 +7,7 @@ const Footer = () => {
             <img src='/images/logo.png' />
           </div>
           <p>
-            Copyright © 2019 - Email: ad.truyenqq@gmail.com
+            Hello, i'm mb1o4er, i'm praticing MERN - mb1o4er@gmail.com
           </p>
         </div>
       </div>
