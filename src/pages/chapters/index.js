@@ -40,11 +40,11 @@ const Chapter = () => {
       <div className='container'>
         {
           prev &&
-          <Link className='prev-btn' to={`/chapters/${storyId}/${prev && prev._id}/${currentIndex}`}>Previous</Link>
+          <Link className='prev-btn' to={`/chapters/${storyId}/${prev && prev._id}/${currentIndex}`}><i className="fas fa-step-backward"></i></Link>
         }
         {
           next &&
-          <Link className='next-btn' to={`/chapters/${storyId}/${next && next._id}/${currentIndex + 2}`}>Next</Link>
+          <Link className='next-btn' to={`/chapters/${storyId}/${next && next._id}/${currentIndex + 2}`}><i className="fas fa-step-forward"></i></Link>
         }
         <h1 className='story'>{chapter.story && chapter.story.title}</h1>
         <h2 className='chap'>Chương {chap}: {chapter.name}</h2>
