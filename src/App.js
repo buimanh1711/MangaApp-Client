@@ -52,9 +52,17 @@ function App() {
     dispatch(getAllStoriesAsync({}))
   }, [])
 
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  }
+
   return (
     <div className='my-app'>
       <Loading />
+      <button id='scroll-top' onClick={scrollTop}><i className="fas fa-arrow-up"></i></button>
       <Switch>
       <Route path='/chapters/:storyId/:_id/:chap'>
           <ReadLayout>
