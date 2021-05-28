@@ -36,10 +36,10 @@ const StoriesList = ({ query, setStoryInfo, setUpdateForm, setChapterCreateForm 
     dispatch(getAllStoriesAsync({ ...query, page }))
   }
 
-  const openPopup = (storyId, title) => {
+  const openPopup = (id, title) => {
     setPopup({
       status: true,
-      storyId,
+      id,
       title
     })
   }
@@ -93,7 +93,7 @@ const StoriesList = ({ query, setStoryInfo, setUpdateForm, setChapterCreateForm 
                         <button className='edit' onClick={() => setUpdateForm({ status: true, info: item, index: index })}>
                           <i className="fas fa-edit"></i>
                         </button>
-                        <button onClick={() => openPopup(item._id, `Xác nhận xóa ${item.title}`)} className='remove'>
+                        <button onClick={() => openPopup(item._id, `Xác nhận xóa truyện "${item.title}"`)} className='remove'>
                           <i className="fas fa-trash-alt"></i>
                         </button>
                       </div>

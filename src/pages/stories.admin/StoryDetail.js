@@ -6,11 +6,17 @@ import { useDispatch } from 'react-redux'
 import { toggleLoading } from '../../redux/actions/web.actions'
 import { deleteChapter } from '../../services/chapters.services'
 import { getAllStoriesAsync } from '../../redux/actions/stories.action'
+import DeletePopup from '../../global/DeletePopup'
 
 const StoryDetail = ({ storyInfo, setStoryInfo, setChapterUpdateForm }) => {
   const dispatch = useDispatch()
   const { info } = storyInfo
   const [story, setStory] = useState({})
+  const [popup, setPopup] = useState({
+    status: false,
+    title: null,
+    id: null
+  })
 
   useEffect(() => {
     if (info._id) {
@@ -32,6 +38,11 @@ const StoryDetail = ({ storyInfo, setStoryInfo, setChapterUpdateForm }) => {
   }, [info])
 
   const removeChapter = (_id, storyId) => {
+    setPopup({
+      status: false,
+      title: null,
+      id: null
+    })
     dispatch(toggleLoading(true))
     deleteChapter(_id, storyId)
       .then(res => {
@@ -60,6 +71,22 @@ const StoryDetail = ({ storyInfo, setStoryInfo, setChapterUpdateForm }) => {
       })
   }
 
+  const openPopup = (id, title) => {
+    setPopup({
+      status: true,
+      id,
+      title
+    })
+  }
+
+  const closePopup = () => {
+    setPopup({
+      status: false,
+      title: null,
+      id: null
+    })
+  }
+
   const close = () => {
     setStoryInfo({ status: false, info: {} })
   }
@@ -69,6 +96,8 @@ const StoryDetail = ({ storyInfo, setStoryInfo, setChapterUpdateForm }) => {
       {
         storyInfo.status &&
         <div id='client-client-info'>
+          <DeletePopup parentId={info._id} closePopup={closePopup} action={removeChapter} status={popup.status} title={popup.title} id={popup.id} />
+
           <div className='client-info-container'>
             <div className='form'>
               <button onClick={close}>
@@ -115,7 +144,7 @@ const StoryDetail = ({ storyInfo, setStoryInfo, setChapterUpdateForm }) => {
                                 <span>{date(item.chapter.createdAt)}</span>
                                 <span style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                                   <i onClick={() => { setChapterUpdateForm({ status: true, chapterId: item.chapter && item.chapter._id || null }) }} style={{ color: 'blue', cursor: 'pointer' }} className="fas fa-edit"></i>
-                                  <i onClick={() => removeChapter(item.chapter._id, story._id)} style={{ color: 'red', cursor: 'pointer' }} className="far fa-trash-alt"></i>
+                                  <i onClick={() => openPopup(item.chapter && item.chapter._id, `Xác nhận xóa chương "${item.chapter && item.chapter.name}"`)} style={{ color: 'red', cursor: 'pointer' }} className="far fa-trash-alt"></i>
                                 </span>
                               </li>
                             )

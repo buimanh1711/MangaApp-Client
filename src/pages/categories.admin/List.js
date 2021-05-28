@@ -1,14 +1,28 @@
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
 import { removeCategoryAsync } from '../../redux/actions/categories.actions'
+import DeletePopup from '../../global/DeletePopup'
 
 const CategoriesList = ({ setUpdateForm, setCategoryInfo }) => {
   const categories = useSelector(state => state.categories.categories)
   const categoryPage = {}
   const dispatch = useDispatch()
 
+  const [popup, setPopup] = useState({
+    status: false,
+    title: null,
+    id: null
+  })
+
+
   const deleteCategory = (_id) => {
+    setPopup({
+      status: false,
+      title: null,
+      id: null
+    })
     dispatch(removeCategoryAsync(_id))
   }
 
@@ -16,8 +30,25 @@ const CategoriesList = ({ setUpdateForm, setCategoryInfo }) => {
     // dispatch(getAllProductsAsync({ page }))
   }
 
+  const openPopup = (id, title) => {
+    setPopup({
+      status: true,
+      id,
+      title
+    })
+  }
+
+  const closePopup = () => {
+    setPopup({
+      status: false,
+      title: null,
+      id: null
+    })
+  }
+
   return (
     <div id='product-list'>
+      <DeletePopup closePopup={closePopup} action={deleteCategory} status={popup.status} title={popup.title} id={popup.id} />
       <div className='product-list-container'>
         {
           categories && categories.length > 0 &&
@@ -50,7 +81,7 @@ const CategoriesList = ({ setUpdateForm, setCategoryInfo }) => {
                       <button className='edit' onClick={() => setUpdateForm({ status: true, info: item, index })}>
                         <i className="fas fa-edit"></i>
                       </button>
-                      <button onClick={() => deleteCategory(item._id)} className='remove'>
+                      <button onClick={() => openPopup(item._id, `Xác nhận xóa chuyên mục "${item.title}"`)} className='remove'>
                         <i className="fas fa-trash-alt"></i>
                       </button>
                     </div>

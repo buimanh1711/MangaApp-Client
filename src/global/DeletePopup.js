@@ -1,4 +1,4 @@
-const DeletePopup = ({ action, closePopup, title, status, id }) => {
+const DeletePopup = ({ action, closePopup, title, status, id, parentId }) => {
   return (
     <>
       {
@@ -6,7 +6,7 @@ const DeletePopup = ({ action, closePopup, title, status, id }) => {
         <div id='delete-pop'>
           <span>{title}</span>
           <div>
-            <button onClick={() => action(id)} className='delete'>
+            <button onClick={() => action(id, parentId)} className='delete'>
               Xóa
             </button>
             <button onClick={closePopup} className='edit'>
