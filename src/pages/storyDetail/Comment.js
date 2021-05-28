@@ -85,8 +85,8 @@ const Comment = ({ storyId, commentList }) => {
           }
           {
             comments && comments.length > 0 &&
-            comments.map(item => (
-              <li>
+            comments.map((item, index) => (
+              <li key={index}>
                 <div className='comment-detail'>
                   {
                     login && ((item.author && item.author._id) === user._id || user.role === 'admin') && 

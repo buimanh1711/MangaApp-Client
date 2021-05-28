@@ -22,7 +22,7 @@ const ChaptersList = ({ storyId }) => {
           <ul className='scroll'>
             {
               chapters.map((item, index) => (
-                <li>
+                <li key={item._id}>
                   <Link target="_blank" to={`/chapters/${storyId}/${item._id}/${index + 1}`}>Chương {index + 1}: {item.name}</Link>
                   <span>{date(item.createdAt)}</span>
                 </li>

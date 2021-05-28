@@ -29,7 +29,6 @@ import { authAsync } from './redux/actions/authen.actions'
 import Admin from './layouts/admin'
 import { getAllCategoriesAsync } from './redux/actions/categories.actions'
 import { getAllStoriesAsync } from './redux/actions/stories.action'
-import Loading from './global/Loading'
 import Categories from './pages/categories'
 import LatestStories from './pages/Latest'
 import DetailStory from './pages/storyDetail'
@@ -61,7 +60,6 @@ function App() {
 
   return (
     <div className='my-app'>
-      <Loading />
       <button id='scroll-top' onClick={scrollTop}><i className="fas fa-arrow-up"></i></button>
       <Switch>
       <Route path='/chapters/:storyId/:_id/:chap'>

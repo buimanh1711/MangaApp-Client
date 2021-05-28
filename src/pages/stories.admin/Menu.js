@@ -61,7 +61,7 @@ const StoryMenu = ({ setCreateForm, query, setQuery }) => {
               {
                 categories && categories.length > 0 &&
                 categories.map(item =>
-                  <option value={JSON.stringify(item)}>
+                  <option key={item._id} value={JSON.stringify(item)}>
                     {item.title}
                   </option>
                 )

@@ -67,7 +67,7 @@ const MainInfo = ({ storyInfo }) => {
                   <>
                     {
                       item.category && item.category.title &&
-                      <li className='cate'>#{item.category.title}</li>
+                      <li key={item._id} className='cate'>#{item.category.title}</li>
                     }
                   </>
                 ))

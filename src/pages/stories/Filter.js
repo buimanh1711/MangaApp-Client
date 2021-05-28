@@ -136,7 +136,7 @@ const Filter = ({ setFilters }) => {
                 <ul className='filter-menu'>
                   {
                     categories && categories.length > 0 && categories.map(item => (
-                      <li onClick={() => filterByCategories(item)}>{item.title}</li>
+                      <li key={item._id} onClick={() => filterByCategories(item)}>{item.title}</li>
                     ))
                   }
                 </ul>
@@ -158,7 +158,7 @@ const Filter = ({ setFilters }) => {
               {
                 currentFilter.currentCategories.length > 0
                 && currentFilter.currentCategories.map(item => (
-                  <div style={{ cursor: 'pointer' }} onClick={() => removeFilterCategories(item._id)} className='tag'>
+                  <div key={item._id} style={{ cursor: 'pointer' }} onClick={() => removeFilterCategories(item._id)} className='tag'>
                     <span>
                       {item.title}
                     </span>

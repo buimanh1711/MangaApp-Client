@@ -1,14 +1,26 @@
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import DeletePopup from '../../global/DeletePopup'
 import Pagination from '../../global/Pagination'
 import Warning from '../../global/Warning'
 import { getAllStoriesAsync, removeStoryAsync, updateStoryAsync } from '../../redux/actions/stories.action'
 
 const StoriesList = ({ query, setStoryInfo, setUpdateForm, setChapterCreateForm }) => {
   const { stories, storyPage } = useSelector(state => state.stories)
+  const [popup, setPopup] = useState({
+    status: false,
+    title: null,
+    id: null
+  })
 
   const dispatch = useDispatch()
 
   const deleteStory = (_id) => {
+    setPopup({
+      status: false,
+      title: null,
+      id: null
+    })
     dispatch(removeStoryAsync(_id))
   }
 
@@ -24,8 +36,25 @@ const StoriesList = ({ query, setStoryInfo, setUpdateForm, setChapterCreateForm 
     dispatch(getAllStoriesAsync({ ...query, page }))
   }
 
+  const openPopup = (storyId, title) => {
+    setPopup({
+      status: true,
+      storyId,
+      title
+    })
+  }
+
+  const closePopup = () => {
+    setPopup({
+      status: false,
+      title: null,
+      id: null
+    })
+  }
+
   return (
     <div id='client-list'>
+      <DeletePopup closePopup={closePopup} action={deleteStory} status={popup.status} title={popup.title} id={popup.id} />
       <div className='client-list-container'>
         {
           stories && stories.length > 0 &&
@@ -53,7 +82,7 @@ const StoriesList = ({ query, setStoryInfo, setUpdateForm, setChapterCreateForm 
                       </span>
                       <span className='school'><strong style={{ color: 'red' }}>{item.chapters && item.chapters.length || 0}</strong></span>
                       <span className='school'><strong style={{ color: 'red' }}>{item.follows && item.follows.length || 0}</strong></span>
-                      <span className='school' style={{cursor: 'pointer'}}>{!item.isCompleted && <i onClick={() => completeStory(item._id, item, index)} style={{color: 'rgb(86, 163, 71)', fontSize: '1.2rem'}} className="fas fa-toggle-off"></i> || <i onClick={() => uncompleteStory(item._id, item, index)} style={{color: 'rgb(86, 163, 71)', fontSize: '1.2rem'}} className="fas fa-toggle-on"></i>}</span>
+                      <span className='school' style={{ cursor: 'pointer' }}>{!item.isCompleted && <i onClick={() => completeStory(item._id, item, index)} style={{ color: 'rgb(86, 163, 71)', fontSize: '1.2rem' }} className="fas fa-toggle-off"></i> || <i onClick={() => uncompleteStory(item._id, item, index)} style={{ color: 'rgb(86, 163, 71)', fontSize: '1.2rem' }} className="fas fa-toggle-on"></i>}</span>
                     </div>
                     {
                       !item.isCompleted &&
@@ -64,7 +93,7 @@ const StoriesList = ({ query, setStoryInfo, setUpdateForm, setChapterCreateForm 
                         <button className='edit' onClick={() => setUpdateForm({ status: true, info: item, index: index })}>
                           <i className="fas fa-edit"></i>
                         </button>
-                        <button onClick={() => deleteStory(item._id)} className='remove'>
+                        <button onClick={() => openPopup(item._id, `Xác nhận xóa ${item.title}`)} className='remove'>
                           <i className="fas fa-trash-alt"></i>
                         </button>
                       </div>

@@ -3,6 +3,8 @@ import SideBar from "./SideBar"
 import MainContent from "./MainContent"
 import { useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom'
+import Loading from "../../global/Loading"
+import DeletePopup from "../../global/DeletePopup"
 
 const Admin = () => {
   const login = localStorage.getItem('login')
@@ -17,7 +19,8 @@ const Admin = () => {
   }, [login, role])
   
   return (
-    <div id='main-layout'>
+    <div id='admin-layout'>
+      <Loading />
       <div className='row no-gutters'>
         <div className='col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3'>
           <div className={!mbSide && 'side__bar-container' || 'side__bar-container active'}>

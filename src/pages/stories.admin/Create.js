@@ -114,14 +114,14 @@ const Create = ({ status, setCreateForm }) => {
                         }
                         if (check) {
                           return (
-                            <span onClick={() => removeCate(item._id)} class='col-6'>
+                            <span key={item._id} onClick={() => removeCate(item._id)} class='col-6'>
                               <i style={{ color: 'green' }} className={"fas fa-check"}></i>
                               {item.title}
                             </span>
                           )
                         } else {
                           return (
-                            <span onClick={() => addCate(item._id)} class='col-6'>
+                            <span key={item._id} onClick={() => addCate(item._id)} class='col-6'>
                               <i style={{ color: 'blue' }} className={"fas fa-plus"}></i>
                               {item.title}
                             </span>

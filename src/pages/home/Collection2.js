@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleLoading } from '../../redux/actions/web.actions'
 import { getAllStories } from '../../services/stories.services'
+import getCate from '../../utils/getCategory'
 
 const Collection2 = () => {
   const [updated, setupdated] = useState([])
@@ -45,9 +46,9 @@ const Collection2 = () => {
                     updated.map((item, index) => {
                       if (index < 6)
                         return (
-                          <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 custom-gutter'>
+                          <div key={item._id} className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 custom-gutter'>
                             <div className='item'>
-                              <span className='category'>{item.categories && (item.categories.length > 0 && item.categories[0].category) && item.categories[0].category.title || '...'}</span>
+                              <span className='category'>{getCate(item.categories)}</span>
                               <div className='thumb'>
                                 <Link to={`/stories/${item._id}`}>
                                   <div className='image-wrapper'>
@@ -83,7 +84,7 @@ const Collection2 = () => {
                     hot.map((item, index) => {
                       if (index < 8)
                         return (
-                          <div className='item'>
+                          <div key={item._id} className='item'>
                             <div className="thumb">
                               <Link to={`/stories/${item._id}`}>
                                 <div className='image-wrapper'>
@@ -95,7 +96,7 @@ const Collection2 = () => {
                               <Link to={`/stories/${item._id}`}>
                                 {item.title}
                               </Link>
-                              <p>#{item.categories && (item.categories.length > 0 && item.categories[0].category) && item.categories[0].category.title || '...'}</p>
+                              <p>#{getCate(item.categories)}</p>
                             </div>
 
                           </div>

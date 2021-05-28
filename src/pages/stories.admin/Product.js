@@ -68,7 +68,7 @@ const Product = ({ product, setProduct }) => {
                         }
 
                         return (
-                          <li>
+                          <li key={item._id}>
                             {
                               !check &&
                               <span

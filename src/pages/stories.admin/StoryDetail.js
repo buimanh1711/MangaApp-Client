@@ -83,7 +83,7 @@ const StoryDetail = ({ storyInfo, setStoryInfo, setChapterUpdateForm }) => {
                   <div>
                     <strong>Thể loại:</strong><span>
                       {
-                        story.categories && story.categories.map((item, index) => <i>{index > 0 ? `, ${item.category.title}` : `${item.category.title}`}</i>)
+                        story.categories && story.categories.map((item, index) => <i key={item._id}>{index > 0 ? `, ${item.category.title}` : `${item.category.title}`}</i>)
                       }
                     </span>
                   </div>

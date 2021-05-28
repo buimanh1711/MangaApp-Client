@@ -14,7 +14,7 @@ const Categories = () => {
         {
           categories && categories.length > 0 &&
           categories.map(item => (
-            <div className="category-container">
+            <div key={item._id} className="category-container">
               <CategoryItems category={item} />
             </div>
           ))
